@@ -60,19 +60,9 @@ export const createGameboard = (playerName) =>{
     return newShip;
   }
 
-  function fleetCoordinates(shipArr){
-    const fleetCoordinateArr = [];
-
-    shipArr.forEach((ship)=>{
-      fleetCoordinateArr.push(ship.coordinates);
-    })
-
-    return fleetCoordinateArr;
-  };
-
   const receiveAttack = (target) => {
     if(attacks.includes(target)){
-      return null;
+      return;
     };
 
     let shipIndex = ships.findIndex((ship)=>{ return ship.coordinates.includes(target)});
@@ -82,13 +72,24 @@ export const createGameboard = (playerName) =>{
     };
 
     attacks.push(target);
-    //returns hit ship
-    return ships[shipIndex];
+  };
+  
+  const fleetCoordinates = () =>{
+    const arr = [];
+    for(let i=0;i<ships.length;i+=1){
+      arr.push(ships[i].coordinates);
+    };
+
+    return arr;
+  }
+
+  const isFleetSunk = () => {
+    if(ships.every(ship => ship.isSunk())){
+      return true;
+    } else {
+      return false;
+    };
   };
 
-  function isFleetSunk(){
-
-  };
-
-  return { ships, attacks, place, receiveAttack };
+  return { place, receiveAttack, fleetCoordinates, isFleetSunk };
 };
