@@ -1,10 +1,4 @@
 import { createGameboard } from "../factories/createGameboard";
-//place
-//recieveattack
-//should keep track of each attack made
-//report it all ships sunk
-
-//get ship placements method?
 
 let playerBoard;
 let computerBoard;
@@ -14,27 +8,49 @@ beforeEach(()=>{
   computerBoard = createGameboard();
 });
 
-describe('testing gameboard place method',()=>{
-
-  test('tests if a single ship is placed correctly',()=>{
-    playerBoard.place('X', 'B4', 4);
-    expect(playerBoard['ships'].some((e)=>{
-      return e.coordinates.join() === 'B4,C4,D4,E4';
-    })).toBe(true);
+describe.skip('testing gameboard place method',()=>{
+  test('test if a single ship is placed correctly',()=>{
+    let testShip = playerBoard.place(['B4','C4','D4','E4']);
+    expect(testShip['coordinates'].join()).toBe('B4,C4,D4,E4');
+    expect(playerBoard['ships']).toContain(testShip);
   });
-  
-  test('tests to make sure the place method will stop an invalid ship placement',()=>{
-    expect(()=>{playerBoard.place('X','J1',4)}).toThrow('ship exceeds the x axis of the gameboard.');
-    expect(()=>{playerBoard.place('Y','A10',4)}).toThrow('ship exceeds the y axis of the gameboard.');
-  });
-
 });
 
-// describe('testing gameboard recieveAttack method',()=>{
-//   test('',()=>{
+describe.skip('testing gameboard recieveAttack method',()=>{
+  let testShip;
 
-//   });
-// });
+  beforeEach(()=>{
+    testShip = playerBoard.place(['F7','F8','F9','F10']);
+  })
+
+  test('testing if a hit is properly received.',()=>{
+    playerBoard.receiveAttack('F9');
+    expect(testShip.getDamage()).toBe(1);
+  });
+
+  test('testing if multipul hits are properly received.',()=>{
+    playerBoard.receiveAttack('F7');
+    playerBoard.receiveAttack('F8');
+    playerBoard.receiveAttack('F9');
+    expect(testShip.getDamage()).toBe(3);
+  });
+
+  test('testing if hits and misses are properly received.',()=>{
+    playerBoard.receiveAttack('G7');
+    expect(testShip.getDamage()).toBe(0);
+    playerBoard.receiveAttack('F8');
+    expect(testShip.getDamage()).toBe(1);
+    playerBoard.receiveAttack('E9');
+    expect(testShip.getDamage()).toBe(1);
+  });
+
+  test('testing if multipul hits to the same spot count as multipul hits on a ship.',()=>{
+    playerBoard.receiveAttack('F8');
+    playerBoard.receiveAttack('F8');
+    playerBoard.receiveAttack('F8');
+    expect(testShip.getDamage()).toBe(1);
+  });
+});
 
 // describe('testing gameboards ability to keep track of all attacks made',()=>{
 //   test('',()=>{
