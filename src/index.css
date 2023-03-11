@@ -1,0 +1,17 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#main{
+
+}
+#grid-space{
+  border: 2px solid black;
+}
+#computer-grid{
+
+}
+#player-grid{
+
+}
