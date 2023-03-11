@@ -2,8 +2,7 @@
 
 import { createShip } from "./createShip";
 
-export const createGameboard = (playerName) =>{
-  let boardOwner = playerName;
+export const createGameboard = () =>{
   const ships = [];
   const attacks = [];
 
@@ -72,6 +71,7 @@ export const createGameboard = (playerName) =>{
     };
 
     attacks.push(target);
+    // return if ship was hit/which ship was hit?
   };
   
   const fleetCoordinates = () =>{
@@ -91,5 +91,5 @@ export const createGameboard = (playerName) =>{
     };
   };
 
-  return { place, receiveAttack, fleetCoordinates, isFleetSunk };
+  return { attacks, place, receiveAttack, fleetCoordinates, isFleetSunk };
 };
