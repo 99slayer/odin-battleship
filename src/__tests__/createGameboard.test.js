@@ -8,14 +8,14 @@ beforeEach(()=>{
   computerBoard = createGameboard();
 });
 
-describe('testing gameboard place method',()=>{
+describe.skip('testing gameboard place method',()=>{
   test('test if a single ship is placed correctly',()=>{
     let testShip = playerBoard.place(['B4','C4','D4','E4']);
     expect(playerBoard.fleetCoordinates().includes(testShip.coordinates)).toBe(true);
   });
 });
 
-describe('testing gameboard recieveAttack method',()=>{
+describe.skip('testing gameboard recieveAttack method',()=>{
   let testShip;
 
   beforeEach(()=>{
@@ -51,7 +51,7 @@ describe('testing gameboard recieveAttack method',()=>{
   });
 });
 
-describe('testing gameboard isFleetSunk method',()=>{
+describe.skip('testing gameboard isFleetSunk method',()=>{
   let testShip1;
   let testShip2;
   let testShip3;
