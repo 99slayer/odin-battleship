@@ -58,11 +58,3 @@ export const createPlayer = (playerName,isComp = false) =>{
 
   return { board, makeAttack, getName, getWins };
 };
-
-//returns a player object which should contain:
-//player name
-//player board
-//player wins
-
-// let joe = createPlayer('joe');
-// joe.makeAttack(computer.board,'F4');
