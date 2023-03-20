@@ -9,8 +9,34 @@
   <title>Odin Battleship</title>
 </head>
 <body>
-  <header></header>
+  <header>
+    <!-- newgame button here? -->
+  </header>
   <div id="main">
+    <div id="menu">
+      <div id="menu-multiplayer" class="menu-screen">
+        <div id="menu-multiplayer-cont">
+          <button id="single-player">single player</button>
+          <button id="two-player">two player</button>
+        </div>
+      </div>
+
+      <div id="menu-names" class="menu-screen">
+        <div id="menu-names-cont">
+          <div id="player-one-cont">
+            <label for="player-one">PLAYER ONE NAME</label>
+            <input type="text" id="player-one-name">
+          </div>
+          <!-- <div id="player-two-cont">
+            <label for="player-two">PLAYER TWO NAME</label>
+            <input type="text" id="player-two-name">
+          </div> -->
+          <button id="start">START</button>
+        </div>
+      </div>
+      
+      <!-- <div id="menu-rules" class="menu-screen"></div> -->
+    </div>
     <div id="computer-stats"></div>
     <div id="player-stats"></div>
     <div id="grid-space">

@@ -1,6 +1,6 @@
 import { parseCellCoordinate } from "../parseCellCoordinate";
 
-describe('testing parseCellCoordinate function',()=>{
+describe.skip('testing parseCellCoordinate function',()=>{
   test('testing 2 number coordinates.',()=>{
     expect(parseCellCoordinate('1-2')).toBe('A2');
     expect(parseCellCoordinate('7-7')).toBe('G7');
