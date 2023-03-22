@@ -56,5 +56,5 @@ export const createPlayer = (playerName,isComp = false) =>{
     return wins;
   };
 
-  return { board, makeAttack, getName, getWins };
+  return { board, isTurn, makeAttack, getName, getWins };
 };

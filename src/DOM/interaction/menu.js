@@ -2,13 +2,22 @@
 //menu multiplayer
 //menu names
 //menu rules
-import { createPlayer } from './../../factories/createPlayer';
+import { setup } from '../../modules/setup';
+import { playerOne, playerTwo } from '../../modules/setup';
+import { createPlayerDisplay } from '../components/createPlayerDisplays';
 
 const menuMultiplayer = document.getElementById('menu-multiplayer');
 const menuNames = document.getElementById('menu-names');
 const menuRules = document.getElementById('menu-rules');
 
-let multiplayer = false;
+const singlePlayerBtn = document.getElementById('single-player');
+const twoPlayerBtn = document.getElementById('two-player');
+
+const playerOneNameEl = document.getElementById('player-one-name');
+// const playerTwoName = document.getElementById('player-two-name');
+const startBtn = document.getElementById('start');
+
+// let multiplayer = false;
 
 const hide = (menu) => {
   menu.style.display = 'none';
@@ -18,16 +27,18 @@ const show = (menu) => {
  menu.style.display = null;
 };
 
-export let playerOne, playerTwo;
+const getNames = () => {
+  let playerOne = playerOneNameEl.value;
+  let playerTwo = 'computer';
+  // if(!multiplayer){
+  //   playerTwo = 'computer';
+  // };
+
+  return [playerOne, playerTwo];
+};
 
 //menu interaction events
 export const menuEvents = (() => {
-  const singlePlayerBtn = document.getElementById('single-player');
-  const twoPlayerBtn = document.getElementById('two-player');
-  
-  const playerOneName = document.getElementById('player-one-name');
-  // const playerTwoName = document.getElementById('player-two-name');
-  const startBtn = document.getElementById('start');
 
   singlePlayerBtn.addEventListener('click',()=>{
     hide(menuMultiplayer);
@@ -44,17 +55,23 @@ export const menuEvents = (() => {
   startBtn.addEventListener('click',()=>{
     //(should trigger on hitting enter also, not just click.)
     //create players with names
+    let names = getNames();
+    let nameOne = names[0];
+    let nameTwo = names[1]
 
-    // if(!multiplayer){
-    //   playerTwo = 'computer';
-    // };
+    if(nameOne === '' || nameTwo === ''){
+      return;
+    };
 
-    playerOne = createPlayer(playerOneName.value);
-    playerTwo = createPlayer('computer', true);
-
-    playerOneName.value = '';
+    setup(nameOne,nameTwo);
+    createPlayerDisplay(playerOne,1);
+    createPlayerDisplay(playerTwo,2);
+    // console.log(playerOne.board.fleetCoordinates());
+    // console.log(playerTwo.board.fleetCoordinates());
+    playerOneNameEl.value = '';
     // playerTwoName.value = '';
     hide(menuNames);
+
   });
   
 })();

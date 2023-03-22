@@ -1,4 +1,4 @@
-export const createGrid = (grid) => {
+export const createGrid = (grid,gridNum) => {
   for(let i=0;i<11;i+=1){
     let row = i;
     let gridRow = document.createElement('div');
@@ -10,6 +10,7 @@ export const createGrid = (grid) => {
       let currentRow = row
       let gridCell = document.createElement('div');
       gridCell.classList.add('grid-cell');
+      gridCell.classList.add(`grid-cell-${gridNum}`);
       gridCell.setAttribute('id',`grid-cell-${i}-${row}`);
       gridCell.setAttribute('data-cell-coordinate',`${i}-${row}`);
       gridCell.style.border = '1px solid black';

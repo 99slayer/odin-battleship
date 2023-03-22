@@ -1,3 +1,5 @@
+//input cell element data attribute
+//output attack coordinates
 export const parseCellCoordinate = (attribute) => {
   if(typeof attribute !== 'string'){
     return;
@@ -37,4 +39,4 @@ export const parseCellCoordinate = (attribute) => {
   let number = getNumber(arr);
   // console.log(letter + number);
   return letter + number;
-}
+};

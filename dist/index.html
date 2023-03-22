@@ -7,12 +7,16 @@
   <script src="./main.js" defer></script>
   <link rel="stylesheet" href="../src/index.css">
   <title>Odin Battleship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <!-- newgame button here? -->
   </header>
   <div id="main">
+
     <div id="menu">
       <div id="menu-multiplayer" class="menu-screen">
         <div id="menu-multiplayer-cont">
@@ -34,14 +38,17 @@
           <button id="start">START</button>
         </div>
       </div>
-      
+
       <!-- <div id="menu-rules" class="menu-screen"></div> -->
     </div>
-    <div id="computer-stats"></div>
-    <div id="player-stats"></div>
+
+    <div id="player-one-display"></div>
+
+    <div id="player-two-display"></div>
+
     <div id="grid-space">
-      <div id="computer-grid"></div>
-      <div id="player-grid"></div>
+      <div id="player-one-grid"></div>
+      <div id="player-two-grid"></div>
     </div>
   </div>
   <footer></footer>

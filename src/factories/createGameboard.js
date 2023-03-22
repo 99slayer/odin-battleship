@@ -81,7 +81,19 @@ export const createGameboard = () =>{
     };
 
     return arr;
-  }
+  };
+
+  const getShipsRemaining = () => {
+    let shipsSunk = 0;
+
+    ships.forEach((ship)=>{
+      if(ship.isSunk()){
+        shipsSunk += 1;
+      };
+    });
+
+    return ships.length - shipsSunk;
+  };
 
   const isFleetSunk = () => {
     if(ships.every(ship => ship.isSunk())){
@@ -91,5 +103,5 @@ export const createGameboard = () =>{
     };
   };
 
-  return { attacks, place, receiveAttack, fleetCoordinates, isFleetSunk };
+  return { attacks, place, receiveAttack, fleetCoordinates, getShipsRemaining, isFleetSunk };
 };
