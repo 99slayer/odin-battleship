@@ -1,9 +1,5 @@
-//this file is the module, no need to make a "module object"
-//menu multiplayer
-//menu names
-//menu rules
-import { setup } from '../../modules/setup';
-import { playerOne, playerTwo } from '../../modules/setup';
+import { setup } from '../../modules/gameStart';
+import { playerOne, playerTwo } from '../../modules/gameStart';
 import { createPlayerDisplay } from '../components/createPlayerDisplays';
 
 const menuMultiplayer = document.getElementById('menu-multiplayer');
@@ -66,12 +62,9 @@ export const menuEvents = (() => {
     setup(nameOne,nameTwo);
     createPlayerDisplay(playerOne,1);
     createPlayerDisplay(playerTwo,2);
-    // console.log(playerOne.board.fleetCoordinates());
-    // console.log(playerTwo.board.fleetCoordinates());
+
     playerOneNameEl.value = '';
     // playerTwoName.value = '';
     hide(menuNames);
-
   });
-  
 })();

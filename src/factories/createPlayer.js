@@ -3,13 +3,15 @@ import { createGameboard } from "./createGameboard";
 export const createPlayer = (playerName,isComp = false) =>{
   const name = playerName;
   const board = createGameboard();
+  const computer = isComp;
   let isTurn = false;
   let wins = 0;
   
   const makeAttack = (enemyBoard,coordinates = null) => {
     let target = coordinates;
 
-    if(isComp){
+    if(computer){
+      //use set interval to have a small delay here
       target = generateAttack(enemyBoard);
     };
 
@@ -18,9 +20,9 @@ export const createPlayer = (playerName,isComp = false) =>{
       return;
     };
     enemyBoard.receiveAttack(target);
+    console.log(`computer has attacked ${target}.`);
   };
 
-  //we'll place 5 ships by default.
   const placeFleet = () => {
 
   };
@@ -56,5 +58,5 @@ export const createPlayer = (playerName,isComp = false) =>{
     return wins;
   };
 
-  return { board, isTurn, makeAttack, getName, getWins };
+  return { board, computer, isTurn, makeAttack, getName, getWins };
 };

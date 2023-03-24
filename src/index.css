@@ -76,15 +76,12 @@ header{
   height: 200px;
   border: 1px solid black;
 }
-#player-one-display{
-  grid-column: 3/4;
-  grid-row: 1/2;
+.display{
   justify-self: flex-start;
   align-self: flex-start;
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-top: 54px;
   margin-left: 20px;
   padding: 10px;
   height: 80%;
@@ -92,22 +89,18 @@ header{
   width: 100%;
   border: 1px solid black;
 }
+.current-player{
+  border: 2px solid rgb(87, 200, 238);
+}
+#player-one-display{
+  grid-column: 3/4;
+  grid-row: 1/2;
+  margin-top: 54px;
+}
 #player-two-display{
   grid-column: 3/4;
   grid-row: 2/3;
-  justify-self: flex-start;
-  align-self: flex-start;
   margin-top: 36px;
-  margin-left: 20px;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  height: 80%;
-  max-width: 200px;
-  width: 100%;
-  /* width: minmax */
-  border: 1px solid black;
 }
 .display-cont{
   flex: 1;

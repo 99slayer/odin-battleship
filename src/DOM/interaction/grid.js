@@ -1,15 +1,26 @@
 import { parseCellCoordinate } from "../../modules/parseCellCoordinate";
+import { playerOne, playerTwo } from "../../modules/gameStart";
+import { turn } from "../../modules/turn";
+
+const getGridCoordinate = (cell) => {
+  let coord = parseCellCoordinate(cell.getAttribute('data-cell-coordinate'));
+  return coord;
+};
+
+//ONLY CLICKING ON THE ENEMY GRID SHOULD BE ABLE TO ATTACK
+//ONLY HOVERING ON THE ENEMY GRID SHOULD CHANGE CELL COLOR
 
 export const gridEvents = () => {
   const cells = document.querySelectorAll('.grid-cell');
 
   cells.forEach((node)=>{
     node.addEventListener('click',(e)=>{
-      //if player turn take shot and visually represent result
-      console.log(e.target);
+      let cell = e.target;
+      let coord = getGridCoordinate(cell);
+      console.log(`coordinate: ${coord}`);
+      turn(playerOne,playerTwo,coord);
     });
   });
-  
 };
 
 //SHOULDN'T RENDER PLAYER TWO SHIPS IF PLAYING AGAINST COMPUTER

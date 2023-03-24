@@ -1,5 +1,3 @@
-//gameboard should be 10x10 (A-J) and (1-10)
-
 import { createShip } from "./createShip";
 
 export const createGameboard = () =>{
