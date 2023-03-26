@@ -1,14 +1,15 @@
 import { createPlayer } from "../factories/createPlayer";
 import { renderGrid } from "../DOM/interaction/grid";
-import { firstTurn } from "./turn";
+import { firstTurn, changeTurn } from "./turn";
+import { highlight } from "../DOM/interaction/playerDisplays";
 
 export let playerOne,playerTwo;
 
 export const setup = (nameOne, nameTwo) => {
-  let x = true;
+  let x = false;
 
   if(nameTwo === 'computer'){
-    x = false;
+    x = true;
   };
   
   playerOne = createPlayer(nameOne);
@@ -29,7 +30,7 @@ export const setup = (nameOne, nameTwo) => {
   renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
 
   firstTurn(playerOne,playerTwo);
-  
+
   if(playerOne.isTurn&&playerOne.computer){
     playerOne.makeAttack(playerTwo.board);
     changeTurn(playerOne,playerTwo);
@@ -43,7 +44,8 @@ export const setup = (nameOne, nameTwo) => {
     renderGrid(document.querySelectorAll('.grid-cell-1'),playerOne);
     renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
   };
-
+  // console.log({p1turn:playerOne.isTurn,p1computer:playerOne.computer,p1attacks:playerOne.board.attacks});
+  // console.log({p2turn:playerTwo.isTurn,p2computer:playerTwo.computer,p2attacks:playerTwo.board.attacks});
 };
 
 export const gameStart = async () => {

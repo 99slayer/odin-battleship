@@ -12,6 +12,7 @@ export const createPlayer = (playerName,isComp = false) =>{
 
     if(computer){
       //use set interval to have a small delay here
+      console.log('computer has generated an attack.');
       target = generateAttack(enemyBoard);
     };
 
@@ -46,7 +47,7 @@ export const createPlayer = (playerName,isComp = false) =>{
       }
       while (enemyBoard.attacks.includes(target));
     };
-
+    console.log(target);
     return target;
   };
 
