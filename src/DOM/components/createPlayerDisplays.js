@@ -11,12 +11,19 @@ export const createPlayerDisplay = (player, playerNum) => {
   name.textContent = `${player.getName()}`;
 
   const turn = document.createElement('p');
-  turn.textContent = `${player.isTurn}`;
-  //maybe use some other way to display whos turn it is??**
+  turn.setAttribute('id',`turn-${playerNum}`);
+  if(player.isTurn){
+    turn.textContent = 'ATTACKING...';
+  } else if (!player.isTurn){
+    turn.textContent = 'WAITING...';
+  };
 
   const ships = document.createElement('p');
+  ships.setAttribute('id',`ships-${playerNum}`);
   ships.textContent = `Ships left: ${player.board.getShipsRemaining()}`;
+
   const wins = document.createElement('p');
+  wins.setAttribute('id',`wins-${playerNum}`);
   wins.textContent = `Wins: ${player.getWins()}`;
 
   display.append(playerNumDisplay,name,turn,ships,wins);

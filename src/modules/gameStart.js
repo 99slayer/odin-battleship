@@ -1,7 +1,7 @@
 import { createPlayer } from "../factories/createPlayer";
-import { renderGrid } from "../DOM/interaction/grid";
+import { gridEvents, renderGrid } from "../DOM/interaction/grid";
 import { firstTurn, changeTurn } from "./turn";
-import { highlight } from "../DOM/interaction/playerDisplays";
+import { highlight, updateDisplays } from "../DOM/interaction/playerDisplays";
 
 export let playerOne,playerTwo;
 
@@ -14,6 +14,8 @@ export const setup = (nameOne, nameTwo) => {
   
   playerOne = createPlayer(nameOne);
   playerTwo = createPlayer(nameTwo,x);
+
+  gridEvents();
 
   //temporary placement setup
   playerOne.board.place(['A2','A3','A4']);
@@ -30,27 +32,19 @@ export const setup = (nameOne, nameTwo) => {
   renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
 
   firstTurn(playerOne,playerTwo);
+  highlight(playerOne,playerTwo);
 
-  if(playerOne.isTurn&&playerOne.computer){
-    playerOne.makeAttack(playerTwo.board);
+  setTimeout(() => {
+    if(playerOne.isTurn&&playerOne.computer){
+      playerOne.makeAttack(playerTwo.board);
+    } else if (playerTwo.isTurn&&playerTwo.computer){
+      playerTwo.makeAttack(playerOne.board);
+    };
+
     changeTurn(playerOne,playerTwo);
     highlight(playerOne,playerTwo);
     renderGrid(document.querySelectorAll('.grid-cell-1'),playerOne);
     renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
-  } else if (playerTwo.isTurn&&playerTwo.computer){
-    playerTwo.makeAttack(playerOne.board);
-    changeTurn(playerOne,playerTwo);
-    highlight(playerOne,playerTwo);
-    renderGrid(document.querySelectorAll('.grid-cell-1'),playerOne);
-    renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
-  };
-  // console.log({p1turn:playerOne.isTurn,p1computer:playerOne.computer,p1attacks:playerOne.board.attacks});
-  // console.log({p2turn:playerTwo.isTurn,p2computer:playerTwo.computer,p2attacks:playerTwo.board.attacks});
-};
-
-export const gameStart = async () => {
-  let p = new Promise(function(resolve){
-    let start = true;
-    resolve(start);
-  });
+    updateDisplays(playerOne,playerTwo);
+  }, 2000);
 };

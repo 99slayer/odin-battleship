@@ -9,7 +9,7 @@ const playerTwoGrid = document.getElementById('player-two-grid');
 
 createGrid(playerOneGrid,1);
 createGrid(playerTwoGrid,2);
-gridEvents();
+// gridEvents();
 
 //DONT START LOOP UNTIL START BUTTON IS CLICKED
 

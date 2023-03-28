@@ -90,7 +90,7 @@ header{
   border: 1px solid black;
 }
 .current-player{
-  border: 2px solid rgb(87, 200, 238);
+  box-shadow: 4px 4px 2px black;
 }
 #player-one-display{
   grid-column: 3/4;
@@ -115,6 +115,7 @@ header{
   align-items: center;
   width: 451.5px;
   height: 100%;
+  user-select: none;
   /* border: 2px solid black; */
 }
 #player-one-grid{
@@ -155,12 +156,12 @@ header{
   height: 100%;
   font-size: 1.5em;
 }
-.grid-cell:hover{
-  background-color: rgb(204, 204, 255);
+/* .grid-cell:hover{
+  background-color: rgb(167, 167, 167);
 }
 .grid-cell:active{
-  background-color: rgb(139, 97, 255);
-}
+  background-color: rgb(65, 65, 65);
+} */
 footer{
   height: 40px;
   width: 100%;

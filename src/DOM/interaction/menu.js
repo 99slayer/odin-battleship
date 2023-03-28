@@ -33,6 +33,24 @@ const getNames = () => {
   return [playerOne, playerTwo];
 };
 
+const start = () => {
+  let names = getNames();
+  let nameOne = names[0];
+  let nameTwo = names[1]
+
+  if(nameOne === '' || nameTwo === ''){
+    return;
+  };
+
+  setup(nameOne,nameTwo);
+  createPlayerDisplay(playerOne,1);
+  createPlayerDisplay(playerTwo,2);
+
+  playerOneNameEl.value = '';
+  // playerTwoName.value = '';
+  hide(menuNames);
+};
+
 //menu interaction events
 export const menuEvents = (() => {
 
@@ -49,22 +67,18 @@ export const menuEvents = (() => {
   });
 
   startBtn.addEventListener('click',()=>{
-    //(should trigger on hitting enter also, not just click.)
-    //create players with names
-    let names = getNames();
-    let nameOne = names[0];
-    let nameTwo = names[1]
+    start();
+  });
 
-    if(nameOne === '' || nameTwo === ''){
-      return;
+  startBtn.addEventListener('keypress',(e)=>{
+    if(e.key === 'Enter'){
+      start();
     };
-
-    setup(nameOne,nameTwo);
-    createPlayerDisplay(playerOne,1);
-    createPlayerDisplay(playerTwo,2);
-
-    playerOneNameEl.value = '';
-    // playerTwoName.value = '';
-    hide(menuNames);
+  });
+  
+  playerOneNameEl.addEventListener('keypress',(e)=>{
+    if(e.key === 'Enter'){
+      start();
+    };
   });
 })();
