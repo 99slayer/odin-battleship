@@ -43,9 +43,7 @@ export const gridEvents = () => {
       } else if (playerTwo.isTurn&&cell.classList.contains('grid-cell-2')){
         return;
       };
-
-      console.log(`coordinate: ${coord}`);
-      //same space
+      
       turn(playerOne,playerTwo,coord);
     });
   });

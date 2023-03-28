@@ -12,8 +12,11 @@ export const createPlayer = (playerName,isComp = false) =>{
 
     if(computer){
       target = generateAttack(enemyBoard);
+    } else {
+      console.log(`${name} attacks ${target}`);
     };
 
+    //MAY NOT NEED
     if(enemyBoard.attacks.includes(target)){
       console.log('square has already been hit.');
       return;
@@ -22,12 +25,11 @@ export const createPlayer = (playerName,isComp = false) =>{
     enemyBoard.receiveAttack(target);
   };
 
-  const placeFleet = () => {
+  // const placeFleet = () => {
 
-  };
+  // };
   
   const generateAttack = (enemyBoard,gen = 1) => {
-    //could potentially make it 'smarter' later on aka, once it lands a hit, focus on that area until the ship is sunk.
     const generateCharCode = () => {
       return Math.floor(Math.random() * (74 - 65 + 1) ) + 65;
     };

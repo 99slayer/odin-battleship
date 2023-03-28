@@ -28,9 +28,17 @@ export const changeTurn = (firstPlayer, secondPlayer) => {
 
 export const turn = (firstPlayer, secondPlayer, target) => {
   if(firstPlayer.isTurn){
-    firstPlayer.makeAttack(secondPlayer.board,target);
+    if(secondPlayer.board.attacks.includes(target)){
+      return;
+    } else {
+      firstPlayer.makeAttack(secondPlayer.board,target);
+    };
   } else if (secondPlayer.isTurn){
-    secondPlayer.makeAttack(firstPlayer.board,target);
+    if(firstPlayer.board.attacks.includes(target)){
+      return;
+    } else {
+      secondPlayer.makeAttack(firstPlayer.board,target);
+    };
   };
 
   changeTurn(firstPlayer,secondPlayer);
