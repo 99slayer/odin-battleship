@@ -7,13 +7,31 @@ const getGridCoordinate = (cell) => {
   return coord;
 };
 
-//ONLY CLICKING ON THE ENEMY GRID SHOULD BE ABLE TO ATTACK
-//ONLY HOVERING ON THE ENEMY GRID SHOULD CHANGE CELL COLOR
+//stops players from interacting with grids when they shouldn't be
+const gridLogic = (firstPlayer, secondPlayer, cell) => {
+  let x;
+
+  //stops function if its computers turn
+  if(firstPlayer.isTurn&&firstPlayer.computer){
+    x = true;
+  } else if (secondPlayer.isTurn&&secondPlayer.computer){
+    x = true;
+  };
+
+  //stops player from interacting with their own grid
+  if(playerOne.isTurn&&cell.classList.contains('grid-cell-1')){
+    x = true;
+  } else if (playerTwo.isTurn&&cell.classList.contains('grid-cell-2')){
+    x = true;
+  };
+
+  return x;
+};
 
 export const gridEvents = () => {
   const cells = document.querySelectorAll('.grid-cell');
   
-  //Checks if the cell is a column or row label
+  //Checks if the cell is a label
   const checkTier = (cell) =>{
     const cellID = cell.getAttribute('data-cell-coordinate');
     const coordinate = parseCellCoordinate(cellID);
@@ -28,68 +46,57 @@ export const gridEvents = () => {
       return;
     };
 
+    //add turn listener
     node.addEventListener('click',(e)=>{
-      //NEED TO MAKE IT SO YOU CANT ATTACK WHEN ITS NOT YOUR TURN
-      //ALSO MAKE SURE YOU CANT ATTACK IF YOU DONT CLICK ON THE CORRECT GRID
       let cell = e.target;
       let coord = getGridCoordinate(cell);
 
-      if(playerTwo.computer&&playerTwo.isTurn){
+      if(gridLogic(playerOne,playerTwo,cell)){
         return;
       };
 
-      if(playerOne.isTurn&&cell.classList.contains('grid-cell-1')){
-        return;
-      } else if (playerTwo.isTurn&&cell.classList.contains('grid-cell-2')){
-        return;
-      };
-      
       turn(playerOne,playerTwo,coord);
     });
-  });
 
-  cells.forEach((node)=>{
-    if(checkTier(node)){
-      return;
-    };
-
+    //add hover cell visual
     node.addEventListener('mouseover',(e)=>{
       let cell = e.target;
 
-      //stops hover from working if its computers turn
-      if(playerOne.isTurn&&playerOne.computer){
-        return;
-      } else if (playerTwo.isTurn&&playerTwo.computer){
+      if(gridLogic(playerOne, playerTwo, cell)){
         return;
       };
 
-      if(playerOne.isTurn&&cell.classList.contains('grid-cell-1')){
-        return;
-      } else if (playerTwo.isTurn&&cell.classList.contains('grid-cell-2')){
-        return;
-      };
-
-      cell.style.backgroundColor = 'rgb(167, 167, 167)';
+      cell.classList.add('grid-cell-hover');
     });
 
+    //remove hover cell visual
     node.addEventListener('mouseleave',(e)=>{
       let cell = e.target;
-      cell.style.backgroundColor = null;
-    });
 
-    node.addEventListener('mousedown',(e)=>{
-      if(playerOne.isTurn&&playerOne.computer){
-        return;
-      } else if (playerTwo.isTurn&&playerTwo.computer){
+      if(gridLogic(playerOne, playerTwo, cell)){
         return;
       };
 
-      let cell = e.target;
-      cell.style.backgroundColor = 'black';
+      cell.classList.remove('grid-cell-hover');
     });
 
-    node.addEventListener('mouseup',(e)=>{
+    //add and remove click cell visual
+    node.addEventListener('mousedown',(e)=>{
       let cell = e.target;
+
+      if(gridLogic(playerOne, playerTwo, cell)){
+        return;
+      };
+
+      cell.classList.add('grid-cell-mousedown');
+
+      cell.onmouseup = () =>{
+        cell.classList.remove('grid-cell-mousedown');
+      };
+
+      cell.onmouseleave = () =>{
+        cell.classList.remove('grid-cell-mousedown');
+      };
     });
   });
 };
