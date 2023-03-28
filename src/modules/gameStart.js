@@ -2,6 +2,7 @@ import { createPlayer } from "../factories/createPlayer";
 import { gridEvents, renderGrid } from "../DOM/interaction/grid";
 import { firstTurn, changeTurn } from "./turn";
 import { highlight, updateDisplays } from "../DOM/interaction/playerDisplays";
+import { compTurn } from "./turn";
 
 export let playerOne,playerTwo;
 
@@ -34,17 +35,28 @@ export const setup = (nameOne, nameTwo) => {
   firstTurn(playerOne,playerTwo);
   highlight(playerOne,playerTwo);
 
-  setTimeout(() => {
-    if(playerOne.isTurn&&playerOne.computer){
-      playerOne.makeAttack(playerTwo.board);
-    } else if (playerTwo.isTurn&&playerTwo.computer){
-      playerTwo.makeAttack(playerOne.board);
-    };
+  let computerPlayer;
 
-    changeTurn(playerOne,playerTwo);
-    highlight(playerOne,playerTwo);
-    renderGrid(document.querySelectorAll('.grid-cell-1'),playerOne);
-    renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
-    updateDisplays(playerOne,playerTwo);
-  }, 2000);
+  if(playerOne.computer){
+    computerPlayer = playerOne;
+  } else if (playerTwo.computer){
+    computerPlayer = playerTwo;
+  };
+  
+  if(computerPlayer.isTurn){
+    compTurn(playerOne,playerTwo);
+    // setTimeout(() => {
+    //   if(playerOne.isTurn&&playerOne.computer){
+    //     playerOne.makeAttack(playerTwo.board);
+    //   } else if (playerTwo.isTurn&&playerTwo.computer){
+    //     playerTwo.makeAttack(playerOne.board);
+    //   };
+
+    //   changeTurn(playerOne,playerTwo);
+    //   highlight(playerOne,playerTwo);
+    //   renderGrid(document.querySelectorAll('.grid-cell-1'),playerOne);
+    //   renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
+    //   updateDisplays(playerOne,playerTwo);
+    // }, 2000);
+  };
 };

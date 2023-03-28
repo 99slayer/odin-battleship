@@ -11,8 +11,6 @@ export const createPlayer = (playerName,isComp = false) =>{
     let target = coordinates;
 
     if(computer){
-      //use set interval to have a small delay here
-      console.log('computer has generated an attack.');
       target = generateAttack(enemyBoard);
     };
 
@@ -20,8 +18,8 @@ export const createPlayer = (playerName,isComp = false) =>{
       console.log('square has already been hit.');
       return;
     };
+
     enemyBoard.receiveAttack(target);
-    console.log(`computer has attacked ${target}.`);
   };
 
   const placeFleet = () => {
@@ -47,7 +45,7 @@ export const createPlayer = (playerName,isComp = false) =>{
       }
       while (enemyBoard.attacks.includes(target));
     };
-    console.log(target);
+    console.log(`computer attacks ${target}`);
     return target;
   };
 
@@ -55,9 +53,13 @@ export const createPlayer = (playerName,isComp = false) =>{
     return name;
   };
 
+  const won = () => {
+    wins += 1;
+  };
+
   const getWins = () => {
     return wins;
   };
 
-  return { board, computer, isTurn, makeAttack, getName, getWins };
+  return { board, computer, isTurn, makeAttack, getName, won, getWins };
 };

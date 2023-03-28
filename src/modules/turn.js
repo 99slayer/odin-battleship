@@ -1,5 +1,6 @@
 import { highlight, updateDisplays } from "../DOM/interaction/playerDisplays";
 import { renderGrid } from "../DOM/interaction/grid";
+import { checkWin } from "./wins";
 
 export const firstTurn = (firstPlayer, secondPlayer) => {
   let number = Math.floor((Math.random() * 10) + 1);
@@ -37,11 +38,13 @@ export const turn = (firstPlayer, secondPlayer, target) => {
   updateDisplays(firstPlayer,secondPlayer);
   renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
   renderGrid(document.querySelectorAll('.grid-cell-2'),secondPlayer);
-  
+  checkWin(firstPlayer,secondPlayer);
+  //IF WON STOP GAME
+  //RESET GAME
   compTurn(firstPlayer, secondPlayer);
 };
 
-const compTurn = (firstPlayer, secondPlayer) => {
+export const compTurn = (firstPlayer, secondPlayer) => {
   setTimeout(() => {
     if(firstPlayer.computer){
       firstPlayer.makeAttack(secondPlayer.board);
@@ -54,5 +57,8 @@ const compTurn = (firstPlayer, secondPlayer) => {
     updateDisplays(firstPlayer,secondPlayer);
     renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
     renderGrid(document.querySelectorAll('.grid-cell-2'),secondPlayer);
-  }, 2000);
+    checkWin(firstPlayer,secondPlayer);
+    //IF WON STOP GAME
+    //RESET GAME
+  }, 1000);
 };

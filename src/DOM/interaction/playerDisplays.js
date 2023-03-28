@@ -30,7 +30,6 @@ export const updateDisplays = (firstPlayer, secondPlayer) => {
 };
 
 const updateTurn = (firstPlayer, secondPlayer) => {
-  console.log('updating attacking player...');
   const turn1 = document.getElementById('turn-1');
   const turn2 = document.getElementById('turn-2');
   if(firstPlayer.isTurn){

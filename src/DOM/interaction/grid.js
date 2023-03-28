@@ -45,6 +45,7 @@ export const gridEvents = () => {
       };
 
       console.log(`coordinate: ${coord}`);
+      //same space
       turn(playerOne,playerTwo,coord);
     });
   });
