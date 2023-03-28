@@ -72,11 +72,6 @@ export const gridEvents = () => {
     //remove hover cell visual
     node.addEventListener('mouseleave',(e)=>{
       let cell = e.target;
-
-      if(gridLogic(playerOne, playerTwo, cell)){
-        return;
-      };
-
       cell.classList.remove('grid-cell-hover');
     });
 
@@ -101,8 +96,7 @@ export const gridEvents = () => {
   });
 };
 
-//SHOULDN'T RENDER PLAYER TWO SHIPS IF PLAYING AGAINST COMPUTER
-//IF TWO PLAYER SHOULDNT RENDER EITHER PLAYERS SHIPS
+//temporarily rendering everything for testing/debugging purposes
 export const renderGrid = (cells,player) => {
   const fleet = player.board.fleetCoordinates();
   const arr = fleet.reduce((acc,val)=>acc.concat(val));

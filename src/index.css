@@ -162,12 +162,6 @@ header{
 .grid-cell-mousedown{
   background-color: rgb(70, 70, 70);
 }
-/* .grid-cell:hover{
-  background-color: rgb(167, 167, 167);
-}
-.grid-cell:active{
-  background-color: rgb(65, 65, 65);
-} */
 footer{
   height: 40px;
   width: 100%;

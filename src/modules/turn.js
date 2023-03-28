@@ -43,11 +43,11 @@ export const turn = (firstPlayer, secondPlayer, target) => {
 
   changeTurn(firstPlayer,secondPlayer);
   highlight(firstPlayer,secondPlayer);
-  updateDisplays(firstPlayer,secondPlayer);
   renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
   renderGrid(document.querySelectorAll('.grid-cell-2'),secondPlayer);
   checkWin(firstPlayer,secondPlayer);
-  //IF WON STOP GAME
+  updateDisplays(firstPlayer,secondPlayer);
+  //IF WON UPDATE DISPLAY WINS THEN STOP GAME
   //RESET GAME
   compTurn(firstPlayer, secondPlayer);
 };
@@ -62,11 +62,11 @@ export const compTurn = (firstPlayer, secondPlayer) => {
 
     changeTurn(firstPlayer,secondPlayer);
     highlight(firstPlayer,secondPlayer);
-    updateDisplays(firstPlayer,secondPlayer);
     renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
     renderGrid(document.querySelectorAll('.grid-cell-2'),secondPlayer);
     checkWin(firstPlayer,secondPlayer);
-    //IF WON STOP GAME
+    updateDisplays(firstPlayer,secondPlayer);
+    //IF WON UPDATE DISPLAY WINS THEN STOP GAME
     //RESET GAME
   }, 1000);
 };

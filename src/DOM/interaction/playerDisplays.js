@@ -26,7 +26,7 @@ export const highlight = (firstPlayer, secondPlayer) => {
 export const updateDisplays = (firstPlayer, secondPlayer) => {
   updateTurn(firstPlayer, secondPlayer);
   updateShips(firstPlayer, secondPlayer);
-  // updateWins(firstPlayer, secondPlayer);
+  updateWins(firstPlayer, secondPlayer);
 };
 
 const updateTurn = (firstPlayer, secondPlayer) => {
@@ -48,7 +48,9 @@ const updateShips = (firstPlayer, secondPlayer) => {
   ships2.textContent = `Ships left: ${secondPlayer.board.getShipsRemaining()}`;
 };
 
-// const updateWins = (firstPlayer, secondPlayer) => {
-//   const wins1 = document.getElementById('wins-1');
-//   const wins2 = document.getElementById('wins-2');
-// };
+const updateWins = (firstPlayer, secondPlayer) => {
+  const wins1 = document.getElementById('wins-1');
+  const wins2 = document.getElementById('wins-2');
+  wins1.textContent = `Wins: ${firstPlayer.getWins()}`;
+  wins2.textContent = `Wins: ${secondPlayer.getWins()}`;
+};
