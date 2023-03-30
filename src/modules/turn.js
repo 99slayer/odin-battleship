@@ -1,9 +1,10 @@
 import { highlight, updateDisplays } from "../DOM/interaction/playerDisplays";
 import { renderGrid } from "../DOM/interaction/grid";
-import { checkWin } from "./wins";
+import { checkWin } from "./checkWin";
 import { gameReset } from "./gameReset";
 import { setup } from "./gameStart";
 
+//randomly chooses a player to go first
 export const firstTurn = (firstPlayer, secondPlayer) => {
   let number = Math.floor((Math.random() * 10) + 1);
 
@@ -16,6 +17,7 @@ export const firstTurn = (firstPlayer, secondPlayer) => {
   };
 };
 
+//changes current player
 export const changeTurn = (firstPlayer, secondPlayer) => {
   if(firstPlayer.isTurn){
     firstPlayer.isTurn = false;
@@ -43,25 +45,12 @@ export const turn = (firstPlayer, secondPlayer, target) => {
     };
   };
 
-  //DO I NEED TO KNOW WHO WON HERE?
-  //FOR FIRST TURN?
+  //PLAYER WINS
   if(checkWin(firstPlayer,secondPlayer) === 'first'){
-    turnWon(firstPlayer,secondPlayer);
-    // gameReset(firstPlayer,secondPlayer);
-    // renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
-    // renderGrid(document.querySelectorAll('.grid-cell-2'),secondPlayer);
-    // setup();
-    // updateDisplays(firstPlayer,secondPlayer);
-    //bring up menu
+    turnWon(firstPlayer,secondPlayer,'first');
     return;
   } else if (checkWin(firstPlayer,secondPlayer) === 'second'){
-    turnWon(firstPlayer,secondPlayer);
-    // gameReset(firstPlayer,secondPlayer);
-    // renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
-    // renderGrid(document.querySelectorAll('.grid-cell-2'),secondPlayer);
-    // setup();
-    // updateDisplays(firstPlayer,secondPlayer);
-    //bring up menu
+    turnWon(firstPlayer,secondPlayer,'second');
     return;
   };
 
@@ -82,25 +71,25 @@ export const compTurn = (firstPlayer, secondPlayer) => {
       secondPlayer.makeAttack(firstPlayer.board);
     };
 
+    //COMP WINS
+    if(checkWin(firstPlayer,secondPlayer) === 'first'){
+      turnWon(firstPlayer,secondPlayer,'first');
+      return;
+    } else if (checkWin(firstPlayer,secondPlayer) === 'second'){
+      turnWon(firstPlayer,secondPlayer,'second');
+      return;
+    };
+
     changeTurn(firstPlayer,secondPlayer);
     highlight(firstPlayer,secondPlayer);
     renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
     renderGrid(document.querySelectorAll('.grid-cell-2'),secondPlayer);
-    // checkWin(firstPlayer,secondPlayer);
     updateDisplays(firstPlayer,secondPlayer);
-
-    if(checkWin(firstPlayer,secondPlayer) === 'first'){
-      turnWon(firstPlayer,secondPlayer);
-    } else if (checkWin(firstPlayer,secondPlayer) === 'second'){
-      turnWon(firstPlayer,secondPlayer);
-    };
-    
-    //SET UP COMPUTER WIN SCENARIO
   }, 1000);
 };
 
-const turnWon = (firstPlayer, secondPlayer) => {
-  gameReset(firstPlayer,secondPlayer);
+const turnWon = (firstPlayer, secondPlayer, winner) => {
+  gameReset(firstPlayer, secondPlayer, winner);
   renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
   renderGrid(document.querySelectorAll('.grid-cell-2'),secondPlayer);
   setup();

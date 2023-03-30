@@ -33,7 +33,10 @@ export const setup = (nameOne, nameTwo) => {
   renderGrid(document.querySelectorAll('.grid-cell-1'),playerOne);
   renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
 
-  firstTurn(playerOne,playerTwo);
+  if(playerOne.getWins() === 0 && playerTwo.getWins() === 0){
+    firstTurn(playerOne,playerTwo);
+  };
+
   highlight(playerOne,playerTwo);
 
   let computerPlayer;
@@ -46,18 +49,5 @@ export const setup = (nameOne, nameTwo) => {
   
   if(computerPlayer.isTurn){
     compTurn(playerOne,playerTwo);
-    // setTimeout(() => {
-    //   if(playerOne.isTurn&&playerOne.computer){
-    //     playerOne.makeAttack(playerTwo.board);
-    //   } else if (playerTwo.isTurn&&playerTwo.computer){
-    //     playerTwo.makeAttack(playerOne.board);
-    //   };
-
-    //   changeTurn(playerOne,playerTwo);
-    //   highlight(playerOne,playerTwo);
-    //   renderGrid(document.querySelectorAll('.grid-cell-1'),playerOne);
-    //   renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
-    //   updateDisplays(playerOne,playerTwo);
-    // }, 2000);
   };
 };

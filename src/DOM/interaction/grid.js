@@ -124,7 +124,6 @@ const resetGrid = (cells) => {
     if(checkTier(cell)){
       return;
     };
-
     cell.textContent = null;
   });
 };

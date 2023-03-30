@@ -1,23 +1,12 @@
-import { updateDisplays } from "../DOM/interaction/playerDisplays";
-import { renderGrid, resetGrid } from "../DOM/interaction/grid";
+import { changeTurn } from "./turn";
 
-export const gameReset = (firstPlayer, secondPlayer) => {
+export const gameReset = (firstPlayer, secondPlayer, winner) => {
+  if(winner === 'first'&&firstPlayer.isTurn){
+    changeTurn(firstPlayer, secondPlayer);
+  } else if (winner === 'second'&&secondPlayer.isTurn){
+    changeTurn(firstPlayer, secondPlayer);
+  };
+
   firstPlayer.board.reset();
-  firstPlayer.isTurn = false;
   secondPlayer.board.reset();
-  secondPlayer.isTurn = false;
-
-  console.log(firstPlayer.board);
-  console.log(secondPlayer.board);
 };
-
-// export const resetPlayers = (firstPlayer, secondPlayer) => {
-//   firstPlayer.resetBoard();
-//   secondPlayer.resetBoard();
-// };
-
-// export const resetDom = (firstPlayer, secondPlayer) => {
-//   renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
-//   renderGrid(document.querySelectorAll('.grid-cell-2'),secondPlayer);
-//   updateDisplays(firstPlayer,secondPlayer);
-// }
