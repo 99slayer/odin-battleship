@@ -28,19 +28,19 @@ const gridLogic = (firstPlayer, secondPlayer, cell) => {
   return x;
 };
 
+//Checks if the cell is a label
+const checkTier = (cell) =>{
+  const cellID = cell.getAttribute('data-cell-coordinate');
+  const coordinate = parseCellCoordinate(cellID);
+
+  if(coordinate[0]==='@'||(coordinate.length===2&&coordinate[1]==='0')){
+    return true;
+  };
+};
+
 export const gridEvents = () => {
   const cells = document.querySelectorAll('.grid-cell');
   
-  //Checks if the cell is a label
-  const checkTier = (cell) =>{
-    const cellID = cell.getAttribute('data-cell-coordinate');
-    const coordinate = parseCellCoordinate(cellID);
-
-    if(coordinate[0]==='@'||(coordinate.length===2&&coordinate[1]==='0')){
-      return true;
-    };
-  };
-
   cells.forEach((node)=>{
     if(checkTier(node)){
       return;
@@ -56,6 +56,7 @@ export const gridEvents = () => {
       };
 
       turn(playerOne,playerTwo,coord);
+      console.log(playerOne.board);
     });
 
     //add hover cell visual
@@ -98,6 +99,11 @@ export const gridEvents = () => {
 
 //temporarily rendering everything for testing/debugging purposes
 export const renderGrid = (cells,player) => {
+  if(player.board.fleetCoordinates().length === 0){
+    resetGrid(cells);
+    return;
+  };
+
   const fleet = player.board.fleetCoordinates();
   const arr = fleet.reduce((acc,val)=>acc.concat(val));
 
@@ -110,5 +116,15 @@ export const renderGrid = (cells,player) => {
     } else if (arr.includes(coord)){
       cell.textContent = '○';
     };
+  });
+};
+
+const resetGrid = (cells) => {
+  cells.forEach((cell)=>{
+    if(checkTier(cell)){
+      return;
+    };
+
+    cell.textContent = null;
   });
 };

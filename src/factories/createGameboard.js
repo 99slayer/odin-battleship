@@ -4,6 +4,7 @@ export const createGameboard = () =>{
   const ships = [];
   const attacks = [];
 
+  //USE FOR PLACE FLEET FUNCTION
   function OLDplace(axis,start,size){
     //X => horizontal + letters
     //Y => vertical + numbers
@@ -101,5 +102,18 @@ export const createGameboard = () =>{
     };
   };
 
-  return { attacks, place, receiveAttack, fleetCoordinates, getShipsRemaining, isFleetSunk };
+  const reset = () => {
+    const resetArray = (arr) => {
+    const size = arr.length
+    
+      for(let i=0;i<size;i+=1){
+        arr.pop();
+      };
+    };
+
+    resetArray(ships);
+    resetArray(attacks);
+  };
+
+  return { attacks, place, receiveAttack, fleetCoordinates, getShipsRemaining, isFleetSunk, reset };
 };

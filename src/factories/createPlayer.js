@@ -2,8 +2,8 @@ import { createGameboard } from "./createGameboard";
 
 export const createPlayer = (playerName,isComp = false) =>{
   const name = playerName;
-  const board = createGameboard();
   const computer = isComp;
+  const board = createGameboard();
   let isTurn = false;
   let wins = 0;
   
