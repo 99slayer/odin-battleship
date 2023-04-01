@@ -36,22 +36,23 @@ export const turn = (firstPlayer, secondPlayer, target) => {
       return;
     } else {
       firstPlayer.makeAttack(secondPlayer.board,target);
+
+      if(checkWin(firstPlayer,secondPlayer) === 'first'){
+        turnWon(firstPlayer,secondPlayer,'first');
+        return;
+      };
     };
   } else if (secondPlayer.isTurn){
     if(firstPlayer.board.attacks.includes(target)){
       return;
     } else {
       secondPlayer.makeAttack(firstPlayer.board,target);
-    };
-  };
 
-  //PLAYER WINS
-  if(checkWin(firstPlayer,secondPlayer) === 'first'){
-    turnWon(firstPlayer,secondPlayer,'first');
-    return;
-  } else if (checkWin(firstPlayer,secondPlayer) === 'second'){
-    turnWon(firstPlayer,secondPlayer,'second');
-    return;
+      if(checkWin(firstPlayer,secondPlayer) === 'second'){
+        turnWon(firstPlayer,secondPlayer,'second');
+        return;
+      }
+    };
   };
 
   changeTurn(firstPlayer,secondPlayer);
@@ -67,17 +68,18 @@ export const compTurn = (firstPlayer, secondPlayer) => {
   setTimeout(() => {
     if(firstPlayer.computer){
       firstPlayer.makeAttack(secondPlayer.board);
+
+      if(checkWin(firstPlayer,secondPlayer) === 'first'){
+        turnWon(firstPlayer,secondPlayer,'first');
+        return;
+      };
     } else if (secondPlayer.computer){
       secondPlayer.makeAttack(firstPlayer.board);
-    };
 
-    //COMP WINS
-    if(checkWin(firstPlayer,secondPlayer) === 'first'){
-      turnWon(firstPlayer,secondPlayer,'first');
-      return;
-    } else if (checkWin(firstPlayer,secondPlayer) === 'second'){
-      turnWon(firstPlayer,secondPlayer,'second');
-      return;
+      if(checkWin(firstPlayer,secondPlayer) === 'second'){
+        turnWon(firstPlayer,secondPlayer,'second');
+        return;
+      };
     };
 
     changeTurn(firstPlayer,secondPlayer);

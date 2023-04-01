@@ -56,7 +56,6 @@ export const gridEvents = () => {
       };
 
       turn(playerOne,playerTwo,coord);
-      console.log(playerOne.board);
     });
 
     //add hover cell visual

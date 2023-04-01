@@ -1,6 +1,6 @@
 export const createShip = (coordinateArray) =>{
   let coordinates = coordinateArray;
-  let length = coordinates.length;
+  let length = coordinateArray.length;
   let damage = 0;
 
   const hit = () => {

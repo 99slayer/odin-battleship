@@ -6,7 +6,8 @@ export const gameReset = (firstPlayer, secondPlayer, winner) => {
   } else if (winner === 'second'&&secondPlayer.isTurn){
     changeTurn(firstPlayer, secondPlayer);
   };
-
+  console.log('GAME HAS BEEN RESET.');
+  
   firstPlayer.board.reset();
   secondPlayer.board.reset();
 };

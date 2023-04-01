@@ -73,6 +73,10 @@ export const createGameboard = () =>{
     // return if ship was hit/which ship was hit?
   };
   
+  const getShips = () => {
+    return ships;
+  };
+
   const fleetCoordinates = () =>{
     const arr = [];
     for(let i=0;i<ships.length;i+=1){
@@ -115,5 +119,5 @@ export const createGameboard = () =>{
     resetArray(attacks);
   };
 
-  return { attacks, place, receiveAttack, fleetCoordinates, getShipsRemaining, isFleetSunk, reset };
+  return { attacks, place, receiveAttack, getShips, fleetCoordinates, getShipsRemaining, isFleetSunk, reset };
 };
