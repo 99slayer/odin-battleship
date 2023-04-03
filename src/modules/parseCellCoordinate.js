@@ -19,7 +19,7 @@ export const parseCellCoordinate = (attribute) => {
 
     let codeValue = parseInt(letterValue);
     let letter = String.fromCharCode((65 + codeValue) - 1);
-    // console.log(letter);
+
     return letter;
   };
 
@@ -31,12 +31,12 @@ export const parseCellCoordinate = (attribute) => {
     } else {
       number = array[array.length-1];
     };
-    // console.log(number);
+
     return number;
   };
 
   let letter = getLetter(arr);
   let number = getNumber(arr);
-  // console.log(letter + number);
+
   return letter + number;
 };

@@ -12,14 +12,9 @@ export const createPlayer = (playerName,isComp = false) =>{
 
     if(computer){
       target = computerAttack(enemyBoard);
+      console.log(`computer attacks ${target}`);
     } else {
       console.log(`${name} attacks ${target}`);
-    };
-
-    //MAY NOT NEED
-    if(enemyBoard.attacks.includes(target)){
-      console.log('square has already been hit.');
-      return;
     };
 
     enemyBoard.receiveAttack(target);
@@ -32,7 +27,6 @@ export const createPlayer = (playerName,isComp = false) =>{
   const computerAttack = (enemyBoard,gen = 1) => {
     const hits = [];
     let ships = enemyBoard.getShips();
-    let hitTotal = 0;
     let target;
 
     const targetAdjacent = () => {
@@ -43,7 +37,6 @@ export const createPlayer = (playerName,isComp = false) =>{
 
         if(fleetArr.includes(atk)&&!(hits.includes(atk))){
           hits.push(atk);
-          hitTotal += 1;
         };
       };
 
@@ -111,7 +104,6 @@ export const createPlayer = (playerName,isComp = false) =>{
 
         if(Boolean(adjacent)){
           target = adjacent;
-          console.log(`computer is targetting ${target}`);
           return adjacent;
         };
       };
@@ -119,8 +111,7 @@ export const createPlayer = (playerName,isComp = false) =>{
 
     targetAdjacent();
     if(hits.length !== 0){
-      console.log(`adjacent target found => ${target}`);
-      console.log(`computer attacks ${target}`);
+      // console.log(`adjacent target found => ${target}`);
       return target;
     };
 
@@ -145,7 +136,6 @@ export const createPlayer = (playerName,isComp = false) =>{
     };
 
     generateAttack();
-    console.log(`computer attacks ${target}`);
     return target;
   };
 

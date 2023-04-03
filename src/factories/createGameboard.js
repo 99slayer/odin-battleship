@@ -56,7 +56,7 @@ export const createGameboard = () =>{
     let newShip = createShip(coordinates);
     ships.push(newShip);
     return newShip;
-  }
+  };
 
   const receiveAttack = (target) => {
     if(attacks.includes(target)){
@@ -70,7 +70,6 @@ export const createGameboard = () =>{
     };
 
     attacks.push(target);
-    // return if ship was hit/which ship was hit?
   };
   
   const getShips = () => {
@@ -108,7 +107,7 @@ export const createGameboard = () =>{
 
   const reset = () => {
     const resetArray = (arr) => {
-    const size = arr.length
+      const size = arr.length;
     
       for(let i=0;i<size;i+=1){
         arr.pop();

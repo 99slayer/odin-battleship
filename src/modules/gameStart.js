@@ -16,6 +16,7 @@ export const setup = (nameOne, nameTwo) => {
     
     playerOne = createPlayer(nameOne);
     playerTwo = createPlayer(nameTwo,x);
+    //NEED TO DO SHIP PLACEMENT HERE
     gridEvents();
   };
 

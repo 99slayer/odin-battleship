@@ -1,5 +1,3 @@
-import { gameReset } from "./gameReset";
-
 export const checkWin = (firstPlayer, secondPlayer) => {
   if(secondPlayer.board.isFleetSunk()){
     console.log('player1 WINS');

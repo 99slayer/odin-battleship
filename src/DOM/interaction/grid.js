@@ -126,3 +126,10 @@ const resetGrid = (cells) => {
     cell.textContent = null;
   });
 };
+
+export const placement = (player) => {
+  //hovering should display an outline of the ship
+  //get player cells
+  //biggest ship to smallest ship
+
+};
