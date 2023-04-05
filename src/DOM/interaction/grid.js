@@ -194,8 +194,22 @@ export const placementPhase = (player, playerNum) => {
       //place ship
       targetCell.onclick = (e) => {
         if(hoverCells.includes(null)){
-          console.log('OUT OF BOUNDS');
+          console.log('OUT OF BOUNDS.');
           return;
+        };
+
+        let fleetArr = [];
+
+        if(!(player.board.fleetCoordinates().length === 0)){
+          fleetArr = player.board.fleetCoordinates().reduce((acc,val)=> acc.concat(val));
+        };
+
+        for(let i=0;i<hoverCells.length;i+=1){
+          let cellCoord = hoverCells[i].getAttribute('data-cell-coordinate');
+
+          if(fleetArr.includes(parseCellCoordinate(cellCoord))){
+            return;
+          };
         };
 
         const coordArr = [];
@@ -210,6 +224,7 @@ export const placementPhase = (player, playerNum) => {
         sizeArr.shift();
 
         //rerender hovercells for hover visual
+        //render grid
 
         if(sizeArr.length === 0){
           const doneBtn = document.getElementById('done-btn');
@@ -220,7 +235,6 @@ export const placementPhase = (player, playerNum) => {
   });
 };
 
-//hereVV
 //returns node list
 const getHoverCells = (start,size,axis,playerNum) => {
   const hoverCells = [];
