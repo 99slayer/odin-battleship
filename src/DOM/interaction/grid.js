@@ -127,9 +127,146 @@ const resetGrid = (cells) => {
   });
 };
 
-export const placement = (player) => {
-  //hovering should display an outline of the ship
-  //get player cells
-  //biggest ship to smallest ship
+export const placementPhase = (player, playerNum) => {
+  let cells = document.querySelectorAll(`.grid-cell-${playerNum}`);
+  const sizeArr = [5,4,3,3,2];
+  let axis = 'y';
+  console.log(cells);
+  cells.forEach((cell)=>{
+    if(checkTier(cell)){
+      return;
+    };
+
+    cell.addEventListener('mouseover',(e)=>{
+      if(sizeArr.length===0){
+        return;
+      };
+
+      let targetCell = e.target;
+      let targetCellCoordinate = targetCell.getAttribute('data-cell-coordinate');
+      let hoverCells = getHoverCells(targetCellCoordinate,sizeArr[0],axis,playerNum);
+
+      hoverCells.forEach((hoverCell)=>{
+        if(!hoverCell){
+          //alert user they are trying to place a ship out of bounds.
+          return;
+        };
+
+        hoverCell.classList.add('grid-cell-hover');
+      });
+
+      targetCell.onmouseleave = (e) => {
+        cells.forEach((c)=>{
+          c.classList.remove('grid-cell-hover');
+        });
+      };
+
+      //change axis
+      document.oncontextmenu = (e) => {
+        e.preventDefault();
+
+        hoverCells.forEach((hoverCell)=>{
+          if(hoverCell === null){
+            return;
+          };
+
+          hoverCell.classList.remove('grid-cell-hover');
+        });
+
+        if(axis === 'y'){
+          axis = 'x';
+        } else if (axis === 'x'){
+          axis = 'y';
+        };
+
+        hoverCells = getHoverCells(targetCellCoordinate,sizeArr[0],axis,playerNum);
+
+        hoverCells.forEach((hoverCell)=>{
+          if(hoverCell === null){
+            return;
+          };
+
+          hoverCell.classList.add('grid-cell-hover');
+        });
+      };
+
+      //also should not be able to place ships that conflict with other ships
+      //place ship
+      targetCell.onclick = (e) => {
+        if(hoverCells.includes(null)){
+          console.log('OUT OF BOUNDS');
+          return;
+        };
+
+        const coordArr = [];
+
+        for(let i=0;i<hoverCells.length;i+=1){
+          let attribute = hoverCells[i].getAttribute('data-cell-coordinate');
+          let coord = parseCellCoordinate(attribute);
+          coordArr.push(coord);
+        };
+
+        player.board.place(coordArr);
+        sizeArr.shift();
+
+        //rerender hovercells for hover visual
+
+        if(sizeArr.length === 0){
+          const doneBtn = document.getElementById('done-btn');
+          doneBtn.style.display = 'block';
+        };
+      };
+    });
+  });
+};
+
+//hereVV
+//returns node list
+const getHoverCells = (start,size,axis,playerNum) => {
+  const hoverCells = [];
+  const startArr = start.split('');
+  let x = getX(startArr);
+  x = parseInt(x);
+  let y = getY(startArr);
+  y = parseInt(y);
+
+  if(axis === 'x'){
+    for(let i=0;i<size;i+=1){
+      let cellX = (x + i) + '-' + y;
+      hoverCells.push(document.querySelector(`.grid-${playerNum} [data-cell-coordinate="${cellX}"]`));
+    };
+  } else if (axis === 'y'){
+    for(let i=0;i<size;i+=1){
+      let cellY = x + '-' + (y + i);
+      hoverCells.push(document.querySelector(`.grid-${playerNum} [data-cell-coordinate="${cellY}"]`));
+    };
+  };
+
+  return hoverCells;
+};
+
+const getX = (arr) =>{
+  let x;
+  if(!(isNaN(parseInt(arr[1])))){
+    let twoDigit = arr.slice(0,2);
+    x = twoDigit.join('');
+  } else {
+    x = arr[0];
+  };
+  return x;
+};
+
+const getY = (arr) => {
+  let y;
+  if(!(isNaN(parseInt(arr[arr.length-2])))){
+    let twoDigit = arr.slice(arr.length-2);
+    y = twoDigit.join('');
+  } else {
+    y = arr[arr.length-1];
+  };
+  return y;
+};
+
+const nextPlacement = () => {
 
 };

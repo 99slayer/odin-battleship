@@ -4,6 +4,10 @@ export const createGameboard = () =>{
   const ships = [];
   const attacks = [];
 
+
+
+
+
   //USE FOR PLACE FLEET FUNCTION
   function OLDplace(axis,start,size){
     //X => horizontal + letters
@@ -27,7 +31,6 @@ export const createGameboard = () =>{
     };
 
     //Check if placement coordinates conflict with any other ships
-
     function createCoordinates(shipAxis,shipSize){
       let coordinates = [];
 
@@ -52,6 +55,12 @@ export const createGameboard = () =>{
     ships.push(ship);
   }; //OLD PLACE FUNCTION, STILL USEFUL CODE IN HERE FOR LATER**
 
+
+
+
+
+
+  
   const place = (coordinates) => {
     let newShip = createShip(coordinates);
     ships.push(newShip);

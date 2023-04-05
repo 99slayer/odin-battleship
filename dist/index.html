@@ -17,16 +17,16 @@
   </header>
   <div id="main">
 
-    <div id="menu">
-      <div id="menu-multiplayer" class="menu-screen">
-        <div id="menu-multiplayer-cont">
+    <div id="menu-cont">
+      <div id="multiplayer" class="menu">
+        <div id="multiplayer-cont" class="menu-cont">
           <button id="single-player">single player</button>
           <button id="two-player">two player</button>
         </div>
       </div>
 
-      <div id="menu-names" class="menu-screen">
-        <div id="menu-names-cont">
+      <div id="names" class="menu">
+        <div id="names-cont" class="menu-cont">
           <div id="player-one-cont">
             <label for="player-one">PLAYER ONE NAME</label>
             <input type="text" id="player-one-name">
@@ -39,8 +39,13 @@
         </div>
       </div>
 
-      <div id="placement-text">
-        please place your ships by clicking where you want to place them. right click to change axis.
+      <div id="placement" class="menu">
+        <div id="placement-cont" class="menu-cont">
+          <div id="placement-text">
+            please place your ships by clicking where you want to place them. right click to change axis.
+          </div>
+          <button id="done-btn">DONE</button>
+        </div>
       </div>
     </div>
 
@@ -49,8 +54,8 @@
     <div id="player-two-display" class="display"></div>
 
     <div id="grid-space">
-      <div id="player-one-grid"></div>
-      <div id="player-two-grid"></div>
+      <div id="player-one-grid" class="grid-1"></div>
+      <div id="player-two-grid" class="grid-2"></div>
     </div>
   </div>
   <footer></footer>

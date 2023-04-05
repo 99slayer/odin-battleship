@@ -21,7 +21,7 @@ header{
   width: 100vw;
   height: 100vh;
 }
-#menu{
+#menu-cont{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -34,26 +34,13 @@ header{
   margin: 56px 20px 20px 20px;
   /* border: 1px solid black; */
 }
-.menu-screen{
-  /* display: none; */
-}
-#menu-multiplayer{
+.menu{
   display: none;
   width: 100%;
   height: 200px;
   border: 1px solid black;
 }
-#menu-multiplayer-cont{
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-#menu-names{
-  width: 100%;
-  height: 200px;
-  border: 1px solid black;
-}
-#menu-names-cont{
+.menu-cont{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -63,11 +50,54 @@ header{
   width: 100%;
   height: 200px;
 }
-#placement-text{
-  display: none;
+#multiplayer{
+  /* display: none;
   width: 100%;
   height: 200px;
-  border: 1px solid black;
+  border: 1px solid black; */
+}
+#multiplayer-cont{
+  /* padding: 10px;
+  display: flex;
+  flex-direction: column; */
+}
+#names{
+  /* display: none;
+  width: 100%;
+  height: 200px;
+  border: 1px solid black; */
+}
+#names-cont{
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  width: 100%;
+  height: 200px; */
+}
+#placement{
+  /* display: none; */
+  /* width: 100%;
+  height: 200px;
+  border: 1px solid black; */
+}
+#placement-cont{
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  width: 100%;
+  height: 200px; */
+}
+#placement-text{
+
+}
+#done-btn{
+  display: none;
 }
 #player-one-cont{
   display: flex;
