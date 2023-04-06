@@ -2,7 +2,7 @@ import { createPlayer } from "../factories/createPlayer";
 import { createPlayerDisplay } from "../DOM/components/createPlayerDisplays";
 import { gridEvents, renderGrid, placementPhase } from "../DOM/interaction/grid";
 import { firstTurn, changeTurn } from "./turn";
-import { highlight, updateDisplays } from "../DOM/interaction/playerDisplays";
+import { highlight } from "../DOM/interaction/highlight";
 import { compTurn } from "./turn";
 
 export let playerOne,playerTwo;
@@ -23,29 +23,31 @@ export const setup = (nameOne, nameTwo) => {
   createPlayerDisplay(playerTwo,2);
 
   placementPhase(playerOne, 1);
-  //call grid events in placement after players done?
-  // gridEvents();
+};
 
-  //should all be at the end of placementPhase?
-  //or rather maybe on done btn?
-  // renderGrid(document.querySelectorAll('.grid-cell-1'),playerOne);
-  // renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
+//should be called after ships have been placed
+export const gameStart = () => {
+  gridEvents();
 
-  // if(playerOne.getWins() === 0 && playerTwo.getWins() === 0){
-  //   firstTurn(playerOne,playerTwo);
-  // };
+  renderGrid(document.querySelectorAll('.grid-cell-1'),playerOne);
+  renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
 
-  // highlight(playerOne,playerTwo);
+  //randomly chooses a player to go first if this is the first match
+  if(playerOne.getWins() === 0 && playerTwo.getWins() === 0){
+    firstTurn(playerOne,playerTwo);
+  };
 
-  // let computerPlayer;
+  highlight(playerOne,playerTwo);
 
-  // if(playerOne.computer){
-  //   computerPlayer = playerOne;
-  // } else if (playerTwo.computer){
-  //   computerPlayer = playerTwo;
-  // };
+  let computerPlayer;
+
+  if(playerOne.computer){
+    computerPlayer = playerOne;
+  } else if (playerTwo.computer){
+    computerPlayer = playerTwo;
+  };
   
-  // if(computerPlayer.isTurn){
-  //   compTurn(playerOne,playerTwo);
-  // };
+  if(computerPlayer.isTurn){
+    compTurn(playerOne,playerTwo);
+  };
 };

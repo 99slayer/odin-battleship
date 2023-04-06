@@ -1,3 +1,5 @@
+import { gameStart } from "./gameStart";
+
 export const computerPlacement = (player,sizeArr) => {
   let numberOfShips = sizeArr.length
 
@@ -21,6 +23,7 @@ export const computerPlacement = (player,sizeArr) => {
     player.board.place(coords);
     sizeArr.shift();
   };
+  gameStart();
 };
 
 const generateCoordinates = (player,size) => {

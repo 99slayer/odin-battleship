@@ -50,6 +50,8 @@ const done = () => {
   } else {
     placementPhase(playerTwo,2);
   };
+  //need a button after player 2 finishes to start game
+  //can start straight away after computer player is done
 };
 
 const start = () => {

@@ -1,4 +1,5 @@
-import { highlight, updateDisplays } from "../DOM/interaction/playerDisplays";
+import { highlight } from "../DOM/interaction/highlight";
+import { updateDisplays } from "../DOM/interaction/playerDisplays";
 import { renderGrid } from "../DOM/interaction/grid";
 import { checkWin } from "./checkWin";
 import { gameReset } from "./gameReset";
