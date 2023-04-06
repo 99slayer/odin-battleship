@@ -1,4 +1,5 @@
 import { createPlayer } from "../factories/createPlayer";
+import { createPlayerDisplay } from "../DOM/components/createPlayerDisplays";
 import { gridEvents, renderGrid, placementPhase } from "../DOM/interaction/grid";
 import { firstTurn, changeTurn } from "./turn";
 import { highlight, updateDisplays } from "../DOM/interaction/playerDisplays";
@@ -18,7 +19,9 @@ export const setup = (nameOne, nameTwo) => {
     playerTwo = createPlayer(nameTwo,x);
   };
 
-  //NEED TO DO SHIP PLACEMENT HERE
+  createPlayerDisplay(playerOne,1);
+  createPlayerDisplay(playerTwo,2);
+
   placementPhase(playerOne, 1);
   //call grid events in placement after players done?
   // gridEvents();

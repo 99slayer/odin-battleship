@@ -131,7 +131,7 @@ export const placementPhase = (player, playerNum) => {
   let cells = document.querySelectorAll(`.grid-cell-${playerNum}`);
   const sizeArr = [5,4,3,3,2];
   let axis = 'y';
-  console.log(cells);
+
   cells.forEach((cell)=>{
     if(checkTier(cell)){
       return;
@@ -145,7 +145,8 @@ export const placementPhase = (player, playerNum) => {
       let targetCell = e.target;
       let targetCellCoordinate = targetCell.getAttribute('data-cell-coordinate');
       let hoverCells = getHoverCells(targetCellCoordinate,sizeArr[0],axis,playerNum);
-
+      // ------------------------------------------------
+      //should make each of these a function
       hoverCells.forEach((hoverCell)=>{
         if(!hoverCell){
           //alert user they are trying to place a ship out of bounds.
@@ -160,7 +161,8 @@ export const placementPhase = (player, playerNum) => {
           c.classList.remove('grid-cell-hover');
         });
       };
-
+      // ------------------------------------------------
+      
       //change axis
       document.oncontextmenu = (e) => {
         e.preventDefault();
@@ -190,7 +192,6 @@ export const placementPhase = (player, playerNum) => {
         });
       };
 
-      //also should not be able to place ships that conflict with other ships
       //place ship
       targetCell.onclick = (e) => {
         if(hoverCells.includes(null)){
@@ -222,9 +223,10 @@ export const placementPhase = (player, playerNum) => {
 
         player.board.place(coordArr);
         sizeArr.shift();
-
+        console.log(sizeArr);
+        hoverCells = getHoverCells(targetCellCoordinate,sizeArr[0],axis,playerNum);
         //rerender hovercells for hover visual
-        //render grid
+        renderGrid(cells,player);
 
         if(sizeArr.length === 0){
           const doneBtn = document.getElementById('done-btn');

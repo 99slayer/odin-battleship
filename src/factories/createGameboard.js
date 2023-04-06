@@ -6,7 +6,7 @@ export const createGameboard = () =>{
 
 
 
-
+  //USE THIS
 
   //USE FOR PLACE FLEET FUNCTION
   function OLDplace(axis,start,size){

@@ -19,10 +19,6 @@ export const createPlayer = (playerName,isComp = false) =>{
 
     enemyBoard.receiveAttack(target);
   };
-
-  // const placeFleet = () => {
-
-  // };
   
   const computerAttack = (enemyBoard,gen = 1) => {
     const hits = [];

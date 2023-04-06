@@ -1,7 +1,8 @@
 import { setup } from '../../modules/gameStart';
 import { playerOne, playerTwo } from '../../modules/gameStart';
 import { createPlayerDisplay } from '../components/createPlayerDisplays';
-import { placementPhase } from './grid';
+import { placementPhase, renderGrid } from './grid';
+import { computerPlacement } from '../../modules/computer';
 
 const multiplayer = document.getElementById('multiplayer');
 const names = document.getElementById('names');
@@ -40,8 +41,15 @@ const done = () => {
   let grid = document.querySelector(`.grid-1`);
   let gridClone = grid.cloneNode(true);
   grid.replaceWith(gridClone);
-  placementPhase(playerTwo,2);
   doneBtn.style.display = null;
+  if(playerTwo.computer){
+    computerPlacement(playerTwo,[5,4,3,3,2]);
+    renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
+    //computer places ships
+    //generate a target coord
+  } else {
+    placementPhase(playerTwo,2);
+  };
 };
 
 const start = () => {
@@ -57,10 +65,6 @@ const start = () => {
   show(placement);
 
   setup(nameOne,nameTwo);
-  //Vmove theseV
-  // createPlayerDisplay(playerOne,1);
-  // createPlayerDisplay(playerTwo,2);
-
   playerOneNameEl.value = '';
   // playerTwoName.value = '';
 };
