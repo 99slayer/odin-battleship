@@ -1,6 +1,5 @@
 import { setup } from '../../modules/gameStart';
 import { playerOne, playerTwo } from '../../modules/gameStart';
-// import { createPlayerDisplay } from '../components/createPlayerDisplays';
 import { placementPhase, renderGrid } from './grid';
 import { computerPlacement } from '../../modules/computer';
 
@@ -41,17 +40,14 @@ const done = () => {
   let grid = document.querySelector(`.grid-1`);
   let gridClone = grid.cloneNode(true);
   grid.replaceWith(gridClone);
-  doneBtn.style.display = null;
+  hide(placement);
+
   if(playerTwo.computer){
     computerPlacement(playerTwo,[2]);
     renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
-    //computer places ships
-    //generate a target coord
   } else {
     placementPhase(playerTwo,2);
   };
-  //need a button after player 2 finishes to start game
-  //can start straight away after computer player is done
 };
 
 const start = () => {
@@ -64,7 +60,6 @@ const start = () => {
   };
 
   hide(names);
-  show(placement);
 
   setup(nameOne,nameTwo);
   playerOneNameEl.value = '';
@@ -88,23 +83,17 @@ export const menuEvents = (() => {
 
   startBtn.addEventListener('click',()=>{
     start();
-    // hide(names);
-    // show(placement);
   });
 
   startBtn.addEventListener('keypress',(e)=>{
     if(e.key === 'Enter'){
       start();
-      // hide(names);
-      // show(placement);
     };
   });
   
   playerOneNameEl.addEventListener('keypress',(e)=>{
     if(e.key === 'Enter'){
       start();
-      // hide(names);
-      // show(placement);
     };
   });
 

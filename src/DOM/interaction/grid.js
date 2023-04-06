@@ -128,6 +128,11 @@ const resetGrid = (cells) => {
 };
 
 export const placementPhase = (player, playerNum) => {
+  const placement = document.getElementById('placement');
+  const doneBtn = document.getElementById('done-btn');
+  placement.style.display = 'block';
+  doneBtn.style.display = null;
+
   let cells = document.querySelectorAll(`.grid-cell-${playerNum}`);
   const sizeArr = [5,4,3,3,2];
   let axis = 'y';
@@ -228,7 +233,6 @@ export const placementPhase = (player, playerNum) => {
         renderGrid(cells,player);
 
         if(sizeArr.length === 0){
-          const doneBtn = document.getElementById('done-btn');
           doneBtn.style.display = 'block';
         };
       };

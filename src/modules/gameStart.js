@@ -21,6 +21,7 @@ export const setup = (nameOne, nameTwo) => {
     createPlayerDisplay(playerTwo,2);
   };
   highlight(playerOne,playerTwo);
+  //show placement menu
   placementPhase(playerOne, 1);
 };
 
@@ -31,7 +32,6 @@ export const gameStart = () => {
   renderGrid(document.querySelectorAll('.grid-cell-1'),playerOne);
   renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
 
-  //randomly chooses a player to go first if this is the first match
   if(playerOne.getWins() === 0 && playerTwo.getWins() === 0){
     firstTurn(playerOne,playerTwo);
   };
