@@ -1,6 +1,5 @@
 import { changeTurn } from "./turn";
 
-//SOMETHING IS GOING WRONG WHEN THE GAME RESETS
 export const gameReset = (firstPlayer, secondPlayer, winner) => {
   if(winner === 'first'&&firstPlayer.isTurn){
     changeTurn(firstPlayer, secondPlayer);

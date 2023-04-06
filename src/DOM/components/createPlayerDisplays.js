@@ -34,9 +34,3 @@ export const createPlayerDisplay = (player, playerNum) => {
     playerTwoDisplay.append(display);
   };
 };
-
-//player#
-//player name
-//is turn
-//current ships alive
-//wins

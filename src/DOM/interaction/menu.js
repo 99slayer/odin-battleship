@@ -1,6 +1,6 @@
 import { setup } from '../../modules/gameStart';
 import { playerOne, playerTwo } from '../../modules/gameStart';
-import { createPlayerDisplay } from '../components/createPlayerDisplays';
+// import { createPlayerDisplay } from '../components/createPlayerDisplays';
 import { placementPhase, renderGrid } from './grid';
 import { computerPlacement } from '../../modules/computer';
 
@@ -43,7 +43,7 @@ const done = () => {
   grid.replaceWith(gridClone);
   doneBtn.style.display = null;
   if(playerTwo.computer){
-    computerPlacement(playerTwo,[5,4,3,3,2]);
+    computerPlacement(playerTwo,[2]);
     renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
     //computer places ships
     //generate a target coord

@@ -92,10 +92,10 @@ export const compTurn = (firstPlayer, secondPlayer) => {
 };
 
 const turnWon = (firstPlayer, secondPlayer, winner) => {
+  console.log('game won.');
   gameReset(firstPlayer, secondPlayer, winner);
   renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
   renderGrid(document.querySelectorAll('.grid-cell-2'),secondPlayer);
-  setup();
   updateDisplays(firstPlayer,secondPlayer);
-  //bring up menu
+  setup();
 };

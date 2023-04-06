@@ -17,11 +17,10 @@ export const setup = (nameOne, nameTwo) => {
     
     playerOne = createPlayer(nameOne);
     playerTwo = createPlayer(nameTwo,x);
+    createPlayerDisplay(playerOne,1);
+    createPlayerDisplay(playerTwo,2);
   };
-
-  createPlayerDisplay(playerOne,1);
-  createPlayerDisplay(playerTwo,2);
-
+  highlight(playerOne,playerTwo);
   placementPhase(playerOne, 1);
 };
 

@@ -125,8 +125,9 @@ header{
   width: 100%;
   border: 1px solid black;
 }
-.current-player{
+.waiting-player{
   box-shadow: 4px 4px 2px black;
+  /* border: 1px solid black; */
 }
 #player-one-display{
   grid-column: 3/4;

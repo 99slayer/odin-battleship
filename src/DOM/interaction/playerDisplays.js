@@ -4,7 +4,6 @@ export const updateDisplays = (firstPlayer, secondPlayer) => {
   updateWins(firstPlayer, secondPlayer);
 };
 
-//NEED SOMETHING WHEN PLAYERS ARE WAITING FOR THE NEXT GAME
 const updateTurn = (firstPlayer, secondPlayer) => {
   const turn1 = document.getElementById('turn-1');
   const turn2 = document.getElementById('turn-2');

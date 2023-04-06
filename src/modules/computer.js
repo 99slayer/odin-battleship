@@ -23,6 +23,7 @@ export const computerPlacement = (player,sizeArr) => {
     player.board.place(coords);
     sizeArr.shift();
   };
+  
   gameStart();
 };
 
