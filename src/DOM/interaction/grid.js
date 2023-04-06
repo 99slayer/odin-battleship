@@ -223,7 +223,6 @@ export const placementPhase = (player, playerNum) => {
 
         player.board.place(coordArr);
         sizeArr.shift();
-        console.log(sizeArr);
         hoverCells = getHoverCells(targetCellCoordinate,sizeArr[0],axis,playerNum);
         //rerender hovercells for hover visual
         renderGrid(cells,player);
@@ -281,8 +280,4 @@ const getY = (arr) => {
     y = arr[arr.length-1];
   };
   return y;
-};
-
-const nextPlacement = () => {
-
 };
