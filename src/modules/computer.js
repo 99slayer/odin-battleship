@@ -94,7 +94,6 @@ const generateStart = () => {
 
   let letter = String.fromCharCode(generateCharCode());
   let number = Math.floor(Math.random() * 10 + 1);
-  // target = letter + number;
 
   return [letter,number];
 };

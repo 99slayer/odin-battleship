@@ -11,10 +11,10 @@ export const firstTurn = (firstPlayer, secondPlayer) => {
 
   if(number%2 === 0){
     firstPlayer.isTurn = true;
-    console.log(`${firstPlayer.getName()} GOES FIRST.`);
+    // console.log(`${firstPlayer.getName()} GOES FIRST.`);
   } else if (number%2 !== 0){
     secondPlayer.isTurn = true;
-    console.log(`${secondPlayer.getName()} GOES FIRST.`);
+    // console.log(`${secondPlayer.getName()} GOES FIRST.`);
   };
 };
 
@@ -23,11 +23,11 @@ export const changeTurn = (firstPlayer, secondPlayer) => {
   if(firstPlayer.isTurn){
     firstPlayer.isTurn = false;
     secondPlayer.isTurn = true;
-    console.log(`IT IS NOW ${secondPlayer.getName()}s TURN.`);
+    // console.log(`IT IS NOW ${secondPlayer.getName()}s TURN.`);
   } else if (secondPlayer.isTurn){
     firstPlayer.isTurn = true;
     secondPlayer.isTurn = false;
-    console.log(`IT IS NOW ${firstPlayer.getName()}s TURN.`);
+    // console.log(`IT IS NOW ${firstPlayer.getName()}s TURN.`);
   };
 };
 
@@ -55,6 +55,7 @@ export const turn = (firstPlayer, secondPlayer, target) => {
       }
     };
   };
+  // logTurn(firstPlayer,secondPlayer);
 
   changeTurn(firstPlayer,secondPlayer);
   highlight(firstPlayer,secondPlayer);
@@ -82,7 +83,8 @@ export const compTurn = (firstPlayer, secondPlayer) => {
         return;
       };
     };
-
+    // logTurn(firstPlayer,secondPlayer);
+    
     changeTurn(firstPlayer,secondPlayer);
     highlight(firstPlayer,secondPlayer);
     renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
@@ -93,6 +95,8 @@ export const compTurn = (firstPlayer, secondPlayer) => {
 
 const turnWon = (firstPlayer, secondPlayer, winner) => {
   console.log('game won.');
+  // logTurn(firstPlayer,secondPlayer);
+
   gameReset(firstPlayer, secondPlayer, winner);
   renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
   renderGrid(document.querySelectorAll('.grid-cell-2'),secondPlayer);
@@ -100,6 +104,22 @@ const turnWon = (firstPlayer, secondPlayer, winner) => {
   setup();
 };
 
-const logTurn = () => {
+const logTurn = (firstPlayer, secondPlayer) => {
+  logPlayer(firstPlayer);
+  logPlayer(secondPlayer);
+};
 
+const logPlayer = (player) => {
+  console.log({
+    name: player.getName(),
+    wins: player.getWins(),
+    isComputer: player.computer,
+    shipsLeft: player.board.getShipsRemaining(),
+  });
+
+  let fleet = player.board.fleetCoordinates();
+
+  for(let i=0;i<fleet.length;i+=1){
+    console.log(fleet[i]);
+  };
 };

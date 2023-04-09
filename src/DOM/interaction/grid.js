@@ -160,11 +160,9 @@ export const placementPhase = (player, playerNum) => {
       let targetCell = e.target;
       let targetCellCoordinate = targetCell.getAttribute('data-cell-coordinate');
       let hoverCells = getHoverCells(targetCellCoordinate,sizeArr[0],axis,playerNum);
-      // ------------------------------------------------
-      //should make each of these a function
+
       hoverCells.forEach((hoverCell)=>{
         if(!hoverCell){
-          //alert user they are trying to place a ship out of bounds.
           return;
         };
 
@@ -176,7 +174,6 @@ export const placementPhase = (player, playerNum) => {
           c.classList.remove('grid-cell-hover');
         });
       };
-      // ------------------------------------------------
       
       //change axis
       document.oncontextmenu = (e) => {

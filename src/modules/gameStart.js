@@ -21,7 +21,6 @@ export const setup = (nameOne, nameTwo) => {
     createPlayerDisplay(playerTwo,2);
   };
   highlight(playerOne,playerTwo);
-  //show placement menu
   placementPhase(playerOne, 1);
 };
 
