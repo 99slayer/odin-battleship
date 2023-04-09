@@ -5,17 +5,17 @@ export const createGrid = (grid,gridNum) => {
     gridRow.classList.add('grid-row');
     gridRow.setAttribute('id',`grid-row-${i}`);
     gridRow.setAttribute('data-row-number',`${i}`);
-    //PROBABLY DONT NEED ID AND DATA ATTRIBUTE, BUT I'LL COME BACK TO THIS.
+
     for(let i=0;i<11;i+=1){
       let currentRow = row
       let gridCell = document.createElement('div');
       gridCell.classList.add('grid-cell');
       gridCell.classList.add(`grid-cell-${gridNum}`);
-      gridCell.setAttribute('id',`grid-cell-${i}-${row}`);
       gridCell.setAttribute('data-cell-coordinate',`${i}-${row}`);
       gridCell.style.border = '1px solid black';
       gridRow.appendChild(gridCell);
     };
+    
     grid.appendChild(gridRow);
   };
 

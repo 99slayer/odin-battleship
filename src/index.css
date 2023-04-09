@@ -10,6 +10,9 @@ body{
   height: 100vh;
 }
 header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 40px;
   width: 100%;
   border: 1px solid black;
@@ -126,7 +129,7 @@ header{
   border: 1px solid black;
 }
 .waiting-player{
-  box-shadow: 4px 4px 2px black;
+  box-shadow: 2px 2px 1px black;
   /* border: 1px solid black; */
 }
 #player-one-display{

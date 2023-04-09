@@ -16,10 +16,10 @@ export const computerPlacement = (player,sizeArr) => {
     while(checkCoordinates(coords,fleetArr)){
       let old = coords;
       coords = generateCoordinates(player,sizeArr[0]);
-      console.log(`old coords: ${old}| new coords: ${coords}`);
+      // console.log(`old coords: ${old}| new coords: ${coords}`);
     };
 
-    console.log(`computer places ship at ${coords}`);
+    // console.log(`computer places ship at ${coords}`);
     player.board.place(coords);
     sizeArr.shift();
   };
@@ -97,4 +97,12 @@ const generateStart = () => {
   // target = letter + number;
 
   return [letter,number];
+};
+
+export const checkForComputer = (firstPlayer, secondPlayer) => {
+  if(firstPlayer.computer || secondPlayer.computer){
+    return true;
+  } else {
+    return false;
+  };
 };

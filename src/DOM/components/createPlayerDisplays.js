@@ -7,11 +7,13 @@ export const createPlayerDisplay = (player, playerNum) => {
 
   const playerNumDisplay = document.createElement('h1');
   playerNumDisplay.textContent = `PLAYER ${playerNum}`;
+
   const name = document.createElement('h3');
   name.textContent = `${player.getName()}`;
 
   const turn = document.createElement('p');
   turn.setAttribute('id',`turn-${playerNum}`);
+  
   if(player.isTurn){
     turn.textContent = 'ATTACKING...';
   } else if (!player.isTurn){

@@ -43,7 +43,7 @@ const done = () => {
   hide(placement);
 
   if(playerTwo.computer){
-    computerPlacement(playerTwo,[2]);
+    computerPlacement(playerTwo,[2,2]);
     renderGrid(document.querySelectorAll('.grid-cell-2'),playerTwo);
   } else {
     placementPhase(playerTwo,2);

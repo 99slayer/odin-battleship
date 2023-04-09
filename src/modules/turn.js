@@ -99,3 +99,7 @@ const turnWon = (firstPlayer, secondPlayer, winner) => {
   updateDisplays(firstPlayer,secondPlayer);
   setup();
 };
+
+const logTurn = () => {
+
+};

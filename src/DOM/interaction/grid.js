@@ -1,6 +1,7 @@
 import { parseCellCoordinate } from "../../modules/parseCellCoordinate";
 import { playerOne, playerTwo } from "../../modules/gameStart";
 import { turn } from "../../modules/turn";
+import { checkForComputer } from "../../modules/computer";
 
 const getGridCoordinate = (cell) => {
   let coord = parseCellCoordinate(cell.getAttribute('data-cell-coordinate'));
@@ -96,7 +97,6 @@ export const gridEvents = () => {
   });
 };
 
-//temporarily rendering everything for testing/debugging purposes
 export const renderGrid = (cells,player) => {
   if(player.board.fleetCoordinates().length === 0){
     resetGrid(cells);
@@ -104,16 +104,25 @@ export const renderGrid = (cells,player) => {
   };
 
   const fleet = player.board.fleetCoordinates();
-  const arr = fleet.reduce((acc,val)=>acc.concat(val));
+  const fleetArr = fleet.reduce((acc,val)=>acc.concat(val));
 
   cells.forEach((cell)=>{
     let coord = parseCellCoordinate(cell.getAttribute('data-cell-coordinate'));
-    if (arr.includes(coord)&&player.board.attacks.includes(coord)) {
+
+    if(fleetArr.includes(coord) && player.board.attacks.includes(coord)) {
       cell.textContent = '●';
-    } else if (!(arr.includes(coord))&&player.board.attacks.includes(coord)) {
+    } else if(!(fleetArr.includes(coord)) && player.board.attacks.includes(coord)) {
       cell.textContent = '/';
-    } else if (arr.includes(coord)){
-      cell.textContent = '○';
+    };
+
+    if(player.computer){
+      return;
+    };
+
+    if(checkForComputer(playerOne, playerTwo) || (player.board.attacks.length === 0 && player.board.fleetCoordinates().length < 5)){
+      if(fleetArr.includes(coord)){
+        cell.textContent = '○';
+      };
     };
   });
 };
@@ -127,6 +136,7 @@ const resetGrid = (cells) => {
   });
 };
 
+//Creates and adds event listeners for the placement phase.
 export const placementPhase = (player, playerNum) => {
   const placement = document.getElementById('placement');
   const doneBtn = document.getElementById('done-btn');
