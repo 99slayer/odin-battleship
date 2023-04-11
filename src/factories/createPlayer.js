@@ -1,134 +1,135 @@
 import { createGameboard } from "./createGameboard";
 
-export const createPlayer = (playerName,isComp = false) =>{
+export const createPlayer = (playerName, isComp = false) => {
   const name = playerName;
   const computer = isComp;
   const board = createGameboard();
-  let isTurn = false;
+  const isTurn = false;
   let wins = 0;
-  
-  const makeAttack = (enemyBoard,coordinates = null) => {
+
+  const makeAttack = (enemyBoard, coordinates = null) => {
     let target = coordinates;
 
-    if(computer){
+    if (computer) {
       target = computerAttack(enemyBoard);
       console.log(`computer attacks ${target}`);
     } else {
       console.log(`${name} attacks ${target}`);
-    };
+    }
 
     enemyBoard.receiveAttack(target);
   };
-  
-  const computerAttack = (enemyBoard,gen = 1) => {
+
+  const computerAttack = (enemyBoard, gen = 1) => {
     const hits = [];
-    let ships = enemyBoard.getShips();
+    const ships = enemyBoard.getShips();
     let target;
 
     const targetAdjacent = () => {
-      //populates hits array
-      for(let i=0;i<enemyBoard.attacks.length;i+=1){
-        let atk = enemyBoard.attacks[i];
-        let fleetArr = enemyBoard.fleetCoordinates().reduce((acc,val)=> acc.concat(val));
+      // populates hits array
+      for (let i = 0; i < enemyBoard.attacks.length; i += 1) {
+        const atk = enemyBoard.attacks[i];
+        const fleetArr = enemyBoard
+          .fleetCoordinates()
+          .reduce((acc, val) => acc.concat(val));
 
-        if(fleetArr.includes(atk)&&!(hits.includes(atk))){
+        if (fleetArr.includes(atk) && !hits.includes(atk)) {
           hits.push(atk);
-        };
-      };
+        }
+      }
 
-      //remove hits that are on sunk ships
-      ships.forEach((ship)=>{
-        if(ship.isSunk()){
-          let list = [];
+      // remove hits that are on sunk ships
+      ships.forEach((ship) => {
+        if (ship.isSunk()) {
+          const list = [];
 
-          for(let i=0;i<hits.length;i+=1){
-            if(ship.coordinates.includes(hits[i])){
+          for (let i = 0; i < hits.length; i += 1) {
+            if (ship.coordinates.includes(hits[i])) {
               list.push(hits[i]);
-            };
-          };
+            }
+          }
 
-          for(let i=0;i<ship.coordinates.length;i+=1){
-            let index = hits.indexOf(list[0]);
-            hits.splice(index,1);
+          for (let i = 0; i < ship.coordinates.length; i += 1) {
+            const index = hits.indexOf(list[0]);
+            hits.splice(index, 1);
             list.shift();
-          };
-        };
+          }
+        }
       });
 
-      //returns valid target adjacent to the input coordinate
+      // returns valid target adjacent to the input coordinate
       const getAdjacent = (inputCoord) => {
-        let [a, ...rest] = inputCoord;
-        let char = a;
-        let num = parseInt(rest.join(''));
-        let code = char.charCodeAt(0);
+        const [a, ...rest] = inputCoord;
+        const char = a;
+        const num = parseInt(rest.join(""));
+        const code = char.charCodeAt(0);
 
-        if(code+1<=74){
-          let coord = (String.fromCharCode(code+1)+num);
+        if (code + 1 <= 74) {
+          const coord = String.fromCharCode(code + 1) + num;
 
-          if(!(enemyBoard.attacks.includes(coord))){
+          if (!enemyBoard.attacks.includes(coord)) {
             return coord;
-          };
-        };
+          }
+        }
 
-        if(code-1>=65){
-          let coord = (String.fromCharCode(code-1)+num);
+        if (code - 1 >= 65) {
+          const coord = String.fromCharCode(code - 1) + num;
 
-          if(!(enemyBoard.attacks.includes(coord))){
+          if (!enemyBoard.attacks.includes(coord)) {
             return coord;
-          };
-        };
+          }
+        }
 
-        if(num+1<=10){
-          let coord = char + (num + 1);
+        if (num + 1 <= 10) {
+          const coord = char + (num + 1);
 
-          if(!(enemyBoard.attacks.includes(coord))){
+          if (!enemyBoard.attacks.includes(coord)) {
             return coord;
-          };
-        };
+          }
+        }
 
-        if(num-1>=1){
-          let coord = char + (num - 1);
+        if (num - 1 >= 1) {
+          const coord = char + (num - 1);
 
-          if(!(enemyBoard.attacks.includes(coord))){
+          if (!enemyBoard.attacks.includes(coord)) {
             return coord;
-          };
-        };
+          }
+        }
       };
 
-      for(let i=0;i<hits.length;i+=1){
-        let adjacent = getAdjacent(hits[i]);
+      for (let i = 0; i < hits.length; i += 1) {
+        const adjacent = getAdjacent(hits[i]);
 
-        if(Boolean(adjacent)){
+        if (adjacent) {
           target = adjacent;
           return adjacent;
-        };
-      };
+        }
+      }
     };
 
     targetAdjacent();
-    if(hits.length !== 0){
+    if (hits.length !== 0) {
       // console.log(`adjacent target found => ${target}`);
       return target;
-    };
+    }
 
     const generateAttack = () => {
       const generateCharCode = () => {
-        return Math.floor(Math.random() * (74 - 65 + 1) ) + 65;
+        return Math.floor(Math.random() * (74 - 65 + 1)) + 65;
       };
 
       let letter = String.fromCharCode(generateCharCode());
       let number = Math.floor(Math.random() * 10 + 1);
       target = letter + number;
-  
-      //remakes attack if target has already been hit
-      if(enemyBoard.attacks.includes(target)){
-        do{
+
+      // remakes attack if target has already been hit
+      if (enemyBoard.attacks.includes(target)) {
+        do {
           letter = String.fromCharCode(generateCharCode());
           number = Math.floor(Math.random() * 10 + 1);
           target = letter + number;
-        }
-        while (enemyBoard.attacks.includes(target));
-      };
+        } while (enemyBoard.attacks.includes(target));
+      }
     };
 
     generateAttack();

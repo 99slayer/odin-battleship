@@ -1,6 +1,6 @@
-export const createShip = (coordinateArray) =>{
-  let coordinates = coordinateArray;
-  let length = coordinateArray.length;
+export const createShip = (coordinateArray) => {
+  const coordinates = coordinateArray;
+  const length = coordinateArray.length;
   let damage = 0;
 
   const hit = () => {
@@ -8,11 +8,11 @@ export const createShip = (coordinateArray) =>{
   };
 
   const isSunk = () => {
-    if(length === damage){
+    if (length === damage) {
       return true;
     } else {
       return false;
-    };
+    }
   };
 
   const getDamage = () => {

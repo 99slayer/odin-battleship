@@ -1,15 +1,15 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
-body{
+body {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
-header{
+header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,14 +17,14 @@ header{
   width: 100%;
   border: 1px solid black;
 }
-#main{
+#main {
   display: grid;
   grid-template-columns: 1fr 452px 1fr;
-  grid-template-rows: repeat(2,1fr);
+  grid-template-rows: repeat(2, 1fr);
   width: 100vw;
   height: 100vh;
 }
-#menu-cont{
+#menu-cont {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -34,13 +34,13 @@ header{
   max-width: 500px;
   margin: 56px 20px 20px 20px;
 }
-.menu{
+.menu {
   display: none;
   width: 100%;
   height: 200px;
   border: 1px solid black;
 }
-.menu-cont{
+.menu-cont {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -50,23 +50,23 @@ header{
   width: 100%;
   height: 200px;
 }
-#done-btn{
+#done-btn {
   display: none;
 }
-#player-one-cont{
+#player-one-cont {
   display: flex;
   flex-direction: column;
 }
-#player-two-cont{
+#player-two-cont {
   display: flex;
   flex-direction: column;
 }
-#menu-rules{
+#menu-rules {
   width: 100%;
   height: 200px;
   border: 1px solid black;
 }
-.display{
+.display {
   justify-self: flex-start;
   align-self: flex-start;
   display: flex;
@@ -79,23 +79,23 @@ header{
   width: 100%;
   border: 1px solid black;
 }
-.waiting-player{
+.waiting-player {
   box-shadow: 2px 2px 1px black;
 }
-#player-one-display{
+#player-one-display {
   grid-column: 3/4;
   grid-row: 1/2;
   margin-top: 54px;
 }
-#player-two-display{
+#player-two-display {
   grid-column: 3/4;
   grid-row: 2/3;
   margin-top: 36px;
 }
-.display-cont{
+.display-cont {
   flex: 1;
 }
-#grid-space{
+#grid-space {
   grid-column: 2/3;
   grid-row: 1/3;
   display: flex;
@@ -106,7 +106,7 @@ header{
   height: 100%;
   user-select: none;
 }
-#player-one-grid{
+#player-one-grid {
   justify-self: center;
   align-self: center;
   display: grid;
@@ -115,7 +115,7 @@ header{
   width: 400px;
   height: 400px;
 }
-#player-two-grid{
+#player-two-grid {
   justify-self: center;
   align-self: center;
   display: grid;
@@ -125,13 +125,13 @@ header{
   width: 400px;
   height: 400px;
 }
-.grid-row{
+.grid-row {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   gap: 1px;
 }
-.grid-cell{
+.grid-cell {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -139,13 +139,13 @@ header{
   height: 100%;
   font-size: 1.5em;
 }
-.grid-cell-hover{
+.grid-cell-hover {
   background-color: rgb(212, 212, 212);
 }
-.grid-cell-mousedown{
+.grid-cell-mousedown {
   background-color: rgb(70, 70, 70);
 }
-footer{
+footer {
   height: 40px;
   width: 100%;
   border: 1px solid black;

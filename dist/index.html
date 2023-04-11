@@ -1,63 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="./main.js" defer></script>
-  <link rel="stylesheet" href="../src/index.css">
-  <title>Odin Battleship</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap" rel="stylesheet">
-</head>
-<body>
-  <header>
-    <h1>ODIN BATTLESHIP</h1>
-  </header>
-  <div id="main">
-
-    <div id="menu-cont">
-      <div id="multiplayer" class="menu">
-        <div id="multiplayer-cont" class="menu-cont">
-          <button id="single-player">single player</button>
-          <button id="two-player">two player</button>
-        </div>
-      </div>
-
-      <div id="names" class="menu">
-        <div id="names-cont" class="menu-cont">
-          <div id="player-one-cont">
-            <label for="player-one">PLAYER ONE NAME</label>
-            <input type="text" id="player-one-name">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="../src/index.css" />
+    <title>Odin Battleship</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>ODIN BATTLESHIP</h1>
+    </header>
+    <div id="main">
+      <div id="menu-cont">
+        <div id="multiplayer" class="menu">
+          <div id="multiplayer-cont" class="menu-cont">
+            <button id="single-player">single player</button>
+            <button id="two-player">two player</button>
           </div>
-          <!-- <div id="player-two-cont">
+        </div>
+
+        <div id="names" class="menu">
+          <div id="names-cont" class="menu-cont">
+            <div id="player-one-cont">
+              <label for="player-one">PLAYER ONE NAME</label>
+              <input type="text" id="player-one-name" />
+            </div>
+            <!-- <div id="player-two-cont">
             <label for="player-two">PLAYER TWO NAME</label>
             <input type="text" id="player-two-name">
           </div> -->
-          <button id="start">START</button>
-        </div>
-      </div>
-
-      <div id="placement" class="menu">
-        <div id="placement-cont" class="menu-cont">
-          <div id="placement-text">
-            please place your ships by clicking where you want to place them. right click to change axis.
+            <button id="start">START</button>
           </div>
-          <button id="done-btn">DONE</button>
+        </div>
+
+        <div id="placement" class="menu">
+          <div id="placement-cont" class="menu-cont">
+            <div id="placement-text">
+              please place your ships by clicking where you want to place them.
+              right click to change axis.
+            </div>
+            <button id="done-btn">DONE</button>
+          </div>
         </div>
       </div>
+
+      <div id="player-one-display" class="display"></div>
+
+      <div id="player-two-display" class="display"></div>
+
+      <div id="grid-space">
+        <div id="player-one-grid" class="grid-1"></div>
+        <div id="player-two-grid" class="grid-2"></div>
+      </div>
     </div>
-
-    <div id="player-one-display" class="display"></div> 
-
-    <div id="player-two-display" class="display"></div>
-
-    <div id="grid-space">
-      <div id="player-one-grid" class="grid-1"></div>
-      <div id="player-two-grid" class="grid-2"></div>
-    </div>
-  </div>
-  <footer></footer>
-</body>
+    <footer></footer>
+  </body>
 </html>
