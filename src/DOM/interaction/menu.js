@@ -1,4 +1,4 @@
-import { setup, playerTwo } from "../../modules/gameStart";
+import { setup, gameStart, playerOne, playerTwo } from "../../modules/gameStart";
 import { placementPhase, renderGrid } from "./grid";
 import { computerPlacement } from "../../modules/computer";
 
@@ -36,21 +36,36 @@ const getNames = () => {
   return [playerOneName, playerTwoName];
 };
 
-const donePlacement = () => {
-  const grid = document.querySelector(".grid-1");
-  const gridClone = grid.cloneNode(true);
-  grid.replaceWith(gridClone);
-  hide(placement);
+const donePlacement = (firstPlayer, secondPlayer) => {
+  renderGrid(document.querySelectorAll('.grid-cell-1'),firstPlayer);
+  renderGrid(document.querySelectorAll('.grid-cell-2'),secondPlayer);
 
-  if (playerTwo.computer) {
-    computerPlacement(playerTwo, [5, 4, 3, 3, 2]);
-    renderGrid(document.querySelectorAll(".grid-cell-2"), playerTwo);
-  } else {
-    placementPhase(playerTwo, 2);
-  }
+  const firstFleet = firstPlayer.board.fleetCoordinates();
+  const secondFleet = secondPlayer.board.fleetCoordinates();
+
+  if(firstFleet.length === 5 && secondFleet.length === 0){
+    const grid1 = document.querySelector(".grid-1");
+    const gridClone1 = grid1.cloneNode(true);
+    grid1.replaceWith(gridClone1);
+    if (secondPlayer.computer) {
+      computerPlacement(secondPlayer, [5, 4, 3, 3, 2]);
+      hide(placement);
+      renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
+    } else {
+      placementPhase(secondPlayer, 2);
+    };
+  };
+
+  if(firstFleet.length === 5 && secondFleet.length === 5){
+    const grid2 = document.querySelector(".grid-2");
+    const gridClone2 = grid2.cloneNode(true);
+    grid2.replaceWith(gridClone2);
+    hide(placement);
+    gameStart();
+  };
 };
 
-const start = () => {
+const gameSetUp = () => {
   const playerNames = getNames();
   const nameOne = playerNames[0];
   const nameTwo = playerNames[1];
@@ -83,23 +98,24 @@ export const menuEvents = (() => {
   singlePlayerBtn.addEventListener('click',multiplayerMenu);
   twoPlayerBtn.addEventListener('click',multiplayerMenu);
 
+  // do this for both inputs
   startBtn.addEventListener("click", () => {
-    start();
+    gameSetUp();
   });
 
   startBtn.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-      start();
+      gameSetUp();
     };
   });
 
   playerOneNameEl.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-      start();
+      gameSetUp();
     };
   });
 
   doneBtn.addEventListener("click", () => {
-    donePlacement();
+    donePlacement(playerOne,playerTwo);
   });
 })();

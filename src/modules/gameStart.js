@@ -40,6 +40,8 @@ export const gameStart = () => {
 
   highlight(playerOne, playerTwo);
 
+
+  // fixVV
   let computerPlayer;
 
   if (playerOne.computer) {

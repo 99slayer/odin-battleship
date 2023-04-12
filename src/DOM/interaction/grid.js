@@ -100,7 +100,7 @@ export const gridEvents = () => {
   });
 };
 
-export const renderGrid = (cells, player) => {
+export const renderGrid = (cells, player, placing = false) => {
   if (player.board.fleetCoordinates().length === 0) {
     resetGrid(cells);
     return;
@@ -110,6 +110,10 @@ export const renderGrid = (cells, player) => {
   const fleetArr = fleet.reduce((acc, val) => acc.concat(val));
 
   cells.forEach((cell) => {
+    if(checkTier(cell)){
+      return;
+    };
+
     const coord = parseCellCoordinate(
       cell.getAttribute("data-cell-coordinate")
     );
@@ -121,20 +125,16 @@ export const renderGrid = (cells, player) => {
       player.board.attacks.includes(coord)
     ) {
       cell.textContent = "/";
-    };
-
-    if (player.computer) {
+    } else if (player.computer){
       return;
-    };
-
-    if (
-      checkForComputer(playerOne, playerTwo) ||
-      (player.board.attacks.length === 0 &&
-        player.board.fleetCoordinates().length < 5)
+    } else if (
+      checkForComputer(playerOne, playerTwo) || placing
     ) {
       if (fleetArr.includes(coord)) {
         cell.textContent = "○";
       };
+    } else {
+      cell.textContent = "";
     };
   });
 };
@@ -257,7 +257,7 @@ export const placementPhase = (player, playerNum) => {
           const attribute = hoverCells[i].getAttribute("data-cell-coordinate");
           const coord = parseCellCoordinate(attribute);
           coordArr.push(coord);
-        }
+        };
 
         player.board.place(coordArr);
         sizeArr.shift();
@@ -268,11 +268,11 @@ export const placementPhase = (player, playerNum) => {
           playerNum
         );
         // rerender hovercells for hover visual
-        renderGrid(cells, player);
+        renderGrid(cells, player, true);
 
         if (sizeArr.length === 0) {
           doneBtn.style.display = "block";
-        }
+        };
       };
     });
   });

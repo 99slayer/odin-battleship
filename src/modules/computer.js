@@ -1,4 +1,5 @@
 import { gameStart } from "./gameStart";
+import { renderGrid } from "../DOM/interaction/grid";
 
 export const computerPlacement = (player, sizeArr) => {
   const numberOfShips = sizeArr.length;
@@ -11,18 +12,19 @@ export const computerPlacement = (player, sizeArr) => {
 
     if (currentFleet.length !== 0) {
       fleetArr = currentFleet.reduce((acc, val) => acc.concat(val));
-    }
+    };
 
     while (checkCoordinates(coords, fleetArr)) {
       // let old = coords;
       coords = generateCoordinates(player, sizeArr[0]);
       // console.log(`old coords: ${old}| new coords: ${coords}`);
-    }
+    };
 
     // console.log(`computer places ship at ${coords}`);
     player.board.place(coords);
     sizeArr.shift();
-  }
+  };
+  renderGrid(document.querySelectorAll('.grid-cell-2'),player);
 
   gameStart();
 };
