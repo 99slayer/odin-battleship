@@ -42,14 +42,14 @@ const generateCoordinates = (player, size) => {
       const code = x.charCodeAt(0);
       const cellX = String.fromCharCode(code + i) + y;
       coordArr.push(cellX);
-    }
+    };
   } else if (axis === "y") {
     // increment number
     for (let i = 0; i < size; i += 1) {
       const cellY = x + (y + i);
       coordArr.push(cellY);
-    }
-  }
+    };
+  };
 
   return coordArr;
 };
@@ -62,8 +62,8 @@ const checkCoordinates = (coordinates, fleet) => {
     } else if (fleet.includes(coordinates[i])) {
       console.log("ship conflict");
       return true;
-    }
-  }
+    };
+  };
 
   const [letter, ...rest] = coordinates[0];
   const x = letter;
@@ -73,7 +73,7 @@ const checkCoordinates = (coordinates, fleet) => {
     return true;
   } else if (y + (coordinates.length - 1) > 10) {
     return true;
-  }
+  };
 };
 
 const generateAxis = () => {
@@ -84,7 +84,7 @@ const generateAxis = () => {
     axis = "x";
   } else if (number % 2 !== 0) {
     axis = "y";
-  }
+  };
 
   return axis;
 };
@@ -105,5 +105,5 @@ export const checkForComputer = (firstPlayer, secondPlayer) => {
     return true;
   } else {
     return false;
-  }
+  };
 };

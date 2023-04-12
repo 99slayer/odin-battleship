@@ -4,6 +4,7 @@ import { renderGrid } from "../DOM/interaction/grid";
 import { checkWin } from "./checkWin";
 import { gameReset } from "./gameReset";
 import { setup } from "./gameStart";
+import { checkForComputer } from "./computer";
 
 // randomly chooses a player to go first
 export const firstTurn = (firstPlayer, secondPlayer) => {
@@ -31,6 +32,13 @@ export const changeTurn = (firstPlayer, secondPlayer) => {
   }
 };
 
+// Vmake into seperate function?V
+// changeTurn(firstPlayer, secondPlayer);
+// highlight(firstPlayer, secondPlayer);
+// renderGrid(document.querySelectorAll(".grid-cell-1"), firstPlayer);
+// renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
+// updateDisplays(firstPlayer, secondPlayer);
+
 export const turn = (firstPlayer, secondPlayer, target) => {
   if (firstPlayer.isTurn) {
     if (secondPlayer.board.attacks.includes(target)) {
@@ -41,8 +49,8 @@ export const turn = (firstPlayer, secondPlayer, target) => {
       if (checkWin(firstPlayer, secondPlayer) === "first") {
         turnWon(firstPlayer, secondPlayer, "first");
         return;
-      }
-    }
+      };
+    };
   } else if (secondPlayer.isTurn) {
     if (firstPlayer.board.attacks.includes(target)) {
       return;
@@ -52,9 +60,9 @@ export const turn = (firstPlayer, secondPlayer, target) => {
       if (checkWin(firstPlayer, secondPlayer) === "second") {
         turnWon(firstPlayer, secondPlayer, "second");
         return;
-      }
-    }
-  }
+      };
+    };
+  };
 
   changeTurn(firstPlayer, secondPlayer);
   highlight(firstPlayer, secondPlayer);
@@ -62,26 +70,20 @@ export const turn = (firstPlayer, secondPlayer, target) => {
   renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
   updateDisplays(firstPlayer, secondPlayer);
 
-  compTurn(firstPlayer, secondPlayer);
+  if(checkForComputer(firstPlayer, secondPlayer)){
+    compTurn(firstPlayer, secondPlayer);
+  };
 };
 
+// should i move all computer functions to the computer module?
 export const compTurn = (firstPlayer, secondPlayer) => {
   setTimeout(() => {
-    if (firstPlayer.computer) {
-      firstPlayer.makeAttack(secondPlayer.board);
+    secondPlayer.makeAttack(firstPlayer.board);
 
-      if (checkWin(firstPlayer, secondPlayer) === "first") {
-        turnWon(firstPlayer, secondPlayer, "first");
-        return;
-      }
-    } else if (secondPlayer.computer) {
-      secondPlayer.makeAttack(firstPlayer.board);
-
-      if (checkWin(firstPlayer, secondPlayer) === "second") {
-        turnWon(firstPlayer, secondPlayer, "second");
-        return;
-      }
-    }
+    if (checkWin(firstPlayer, secondPlayer) === "second") {
+      turnWon(firstPlayer, secondPlayer, "second");
+      return;
+    };
 
     changeTurn(firstPlayer, secondPlayer);
     highlight(firstPlayer, secondPlayer);
