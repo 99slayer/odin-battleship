@@ -7,6 +7,7 @@ import {
 } from "../DOM/interaction/grid";
 import { firstTurn, compTurn } from "./turn";
 import { highlight } from "../DOM/interaction/highlight";
+import { updateDisplays } from "../DOM/interaction/playerDisplays";
 
 export let playerOne, playerTwo;
 
@@ -39,6 +40,7 @@ export const gameStart = () => {
     firstTurn(playerOne, playerTwo);
   };
 
+  updateDisplays(playerOne, playerTwo);
   highlight(playerOne, playerTwo);
 
   if (playerTwo.computer && playerTwo.isTurn) {

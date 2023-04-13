@@ -32,13 +32,6 @@ export const changeTurn = (firstPlayer, secondPlayer) => {
   }
 };
 
-// Vmake into seperate function?V
-// changeTurn(firstPlayer, secondPlayer);
-// highlight(firstPlayer, secondPlayer);
-// renderGrid(document.querySelectorAll(".grid-cell-1"), firstPlayer);
-// renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
-// updateDisplays(firstPlayer, secondPlayer);
-
 export const turn = (firstPlayer, secondPlayer, target) => {
   if (firstPlayer.isTurn) {
     if (secondPlayer.board.attacks.includes(target)) {
@@ -63,12 +56,8 @@ export const turn = (firstPlayer, secondPlayer, target) => {
       };
     };
   };
-
-  changeTurn(firstPlayer, secondPlayer);
-  highlight(firstPlayer, secondPlayer);
-  renderGrid(document.querySelectorAll(".grid-cell-1"), firstPlayer);
-  renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
-  updateDisplays(firstPlayer, secondPlayer);
+  log(firstPlayer,secondPlayer);
+  turnRegular(firstPlayer, secondPlayer);
 
   if(checkForComputer(firstPlayer, secondPlayer)){
     compTurn(firstPlayer, secondPlayer);
@@ -84,19 +73,47 @@ export const compTurn = (firstPlayer, secondPlayer) => {
       turnWon(firstPlayer, secondPlayer, "second");
       return;
     };
-
-    changeTurn(firstPlayer, secondPlayer);
-    highlight(firstPlayer, secondPlayer);
-    renderGrid(document.querySelectorAll(".grid-cell-1"), firstPlayer);
-    renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
-    updateDisplays(firstPlayer, secondPlayer);
+    log(firstPlayer,secondPlayer);
+    turnRegular(firstPlayer, secondPlayer);
   }, 1000);
 };
 
+const turnRegular = (firstPlayer, secondPlayer) => {
+  changeTurn(firstPlayer, secondPlayer);
+  highlight(firstPlayer, secondPlayer);
+  renderGrid(document.querySelectorAll(".grid-cell-1"), firstPlayer);
+  renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
+  updateDisplays(firstPlayer, secondPlayer);
+};
+
 const turnWon = (firstPlayer, secondPlayer, winner) => {
+  log(firstPlayer,secondPlayer);
   gameReset(firstPlayer, secondPlayer, winner);
   renderGrid(document.querySelectorAll(".grid-cell-1"), firstPlayer);
   renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
   updateDisplays(firstPlayer, secondPlayer);
   setup();
+};
+
+// just for testing
+const log = (firstPlayer, secondPlayer) => {
+  let x = 0;
+  for(let i=0;i<2;i+=1){
+    if(x === 0){
+      const fleet = firstPlayer.board.fleetCoordinates();
+      console.log('player 1');
+      for(let i=0;i<firstPlayer.board.fleetCoordinates().length;i+=1){
+        console.log(fleet[i]);
+      };
+      console.log(firstPlayer.board.getShipsRemaining());
+      x += 1;
+    } else if (x === 1){
+      const fleet = secondPlayer.board.fleetCoordinates();
+      console.log('player 2');
+      for(let i=0;i<secondPlayer.board.fleetCoordinates().length;i+=1){
+        console.log(fleet[i]);
+      };
+      console.log(secondPlayer.board.getShipsRemaining());
+    };
+  };
 };
