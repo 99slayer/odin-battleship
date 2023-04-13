@@ -1,7 +1,7 @@
 import { createGrid } from "./DOM/components/createGrid";
 import { menuEvents } from "./DOM/interaction/menu";
 
-const multiplayer = document.getElementById('multiplayer');
+const multiplayer = document.getElementById("multiplayer");
 multiplayer.style.display = "block";
 
 // const names = document.getElementById("names");

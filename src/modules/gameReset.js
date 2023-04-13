@@ -1,4 +1,5 @@
 import { changeTurn } from "./turn";
+import { resetGridEvents } from "../DOM/interaction/grid";
 
 export const gameReset = (firstPlayer, secondPlayer, winner) => {
   if (winner === "first" && firstPlayer.isTurn) {
@@ -8,6 +9,11 @@ export const gameReset = (firstPlayer, secondPlayer, winner) => {
   }
   // console.log('GAME HAS BEEN RESET.');
 
+  const grid1 = document.querySelector(".grid-1");
+  const grid2 = document.querySelector(".grid-2");
+
   firstPlayer.board.reset();
   secondPlayer.board.reset();
+  resetGridEvents(grid1);
+  resetGridEvents(grid2);
 };

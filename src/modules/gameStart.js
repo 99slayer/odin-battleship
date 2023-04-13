@@ -17,13 +17,13 @@ export const setup = (nameOne, nameTwo) => {
 
     if (nameTwo === "computer") {
       x = true;
-    };
+    }
 
     playerOne = createPlayer(nameOne);
     playerTwo = createPlayer(nameTwo, x);
     createPlayerDisplay(playerOne, 1);
     createPlayerDisplay(playerTwo, 2);
-  };
+  }
 
   highlight(playerOne, playerTwo);
   placementPhase(playerOne, 1);
@@ -38,12 +38,12 @@ export const gameStart = () => {
 
   if (playerOne.getWins() === 0 && playerTwo.getWins() === 0) {
     firstTurn(playerOne, playerTwo);
-  };
+  }
 
   updateDisplays(playerOne, playerTwo);
   highlight(playerOne, playerTwo);
 
   if (playerTwo.computer && playerTwo.isTurn) {
     compTurn(playerOne, playerTwo);
-  };
+  }
 };

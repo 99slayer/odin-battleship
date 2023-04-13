@@ -17,14 +17,14 @@ const gridLogic = (firstPlayer, secondPlayer, cell) => {
     x = true;
   } else if (secondPlayer.isTurn && secondPlayer.computer) {
     x = true;
-  };
+  }
 
   // stops player from interacting with their own grid
   if (playerOne.isTurn && cell.classList.contains("grid-cell-1")) {
     x = true;
   } else if (playerTwo.isTurn && cell.classList.contains("grid-cell-2")) {
     x = true;
-  };
+  }
 
   return x;
 };
@@ -39,7 +39,7 @@ const checkTier = (cell) => {
     (coordinate.length === 2 && coordinate[1] === "0")
   ) {
     return true;
-  };
+  }
 };
 
 export const gridEvents = () => {
@@ -48,7 +48,7 @@ export const gridEvents = () => {
   cells.forEach((node) => {
     if (checkTier(node)) {
       return;
-    };
+    }
 
     // add turn listener
     node.addEventListener("click", (e) => {
@@ -57,7 +57,7 @@ export const gridEvents = () => {
 
       if (gridLogic(playerOne, playerTwo, cell)) {
         return;
-      };
+      }
 
       turn(playerOne, playerTwo, coord);
     });
@@ -68,7 +68,7 @@ export const gridEvents = () => {
 
       if (gridLogic(playerOne, playerTwo, cell)) {
         return;
-      };
+      }
 
       cell.classList.add("grid-cell-hover");
     });
@@ -85,7 +85,7 @@ export const gridEvents = () => {
 
       if (gridLogic(playerOne, playerTwo, cell)) {
         return;
-      };
+      }
 
       cell.classList.add("grid-cell-mousedown");
 
@@ -104,15 +104,15 @@ export const renderGrid = (cells, player, placing = false) => {
   if (player.board.fleetCoordinates().length === 0) {
     resetGrid(cells);
     return;
-  };
+  }
 
   const fleet = player.board.fleetCoordinates();
   const fleetArr = fleet.reduce((acc, val) => acc.concat(val));
 
   cells.forEach((cell) => {
-    if(checkTier(cell)){
+    if (checkTier(cell)) {
       return;
-    };
+    }
 
     const coord = parseCellCoordinate(
       cell.getAttribute("data-cell-coordinate")
@@ -125,17 +125,15 @@ export const renderGrid = (cells, player, placing = false) => {
       player.board.attacks.includes(coord)
     ) {
       cell.textContent = "/";
-    } else if (player.computer){
+    } else if (player.computer) {
       return;
-    } else if (
-      checkForComputer(playerOne, playerTwo) || placing
-    ) {
+    } else if (checkForComputer(playerOne, playerTwo) || placing) {
       if (fleetArr.includes(coord)) {
         cell.textContent = "○";
-      };
+      }
     } else {
       cell.textContent = "";
-    };
+    }
   });
 };
 
@@ -143,7 +141,7 @@ const resetGrid = (cells) => {
   cells.forEach((cell) => {
     if (checkTier(cell)) {
       return;
-    };
+    }
     cell.textContent = null;
   });
 };
@@ -257,7 +255,7 @@ export const placementPhase = (player, playerNum) => {
           const attribute = hoverCells[i].getAttribute("data-cell-coordinate");
           const coord = parseCellCoordinate(attribute);
           coordArr.push(coord);
-        };
+        }
 
         player.board.place(coordArr);
         sizeArr.shift();
@@ -272,7 +270,7 @@ export const placementPhase = (player, playerNum) => {
 
         if (sizeArr.length === 0) {
           doneBtn.style.display = "block";
-        };
+        }
       };
     });
   });
@@ -330,4 +328,9 @@ const getY = (arr) => {
     y = arr[arr.length - 1];
   }
   return y;
+};
+
+export const resetGridEvents = (grid) => {
+  const gridClone = grid.cloneNode(true);
+  grid.replaceWith(gridClone);
 };
