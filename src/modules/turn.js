@@ -56,7 +56,7 @@ export const turn = (firstPlayer, secondPlayer, target) => {
       }
     }
   }
-  // log(firstPlayer, secondPlayer);
+  log(firstPlayer, secondPlayer);
   turnRegular(firstPlayer, secondPlayer);
 
   if (checkForComputer(firstPlayer, secondPlayer)) {
@@ -73,7 +73,7 @@ export const compTurn = (firstPlayer, secondPlayer) => {
       turnWon(firstPlayer, secondPlayer, "second");
       return;
     }
-    // log(firstPlayer, secondPlayer);
+    log(firstPlayer, secondPlayer);
     turnRegular(firstPlayer, secondPlayer);
   }, 1000);
 };
@@ -87,7 +87,7 @@ const turnRegular = (firstPlayer, secondPlayer) => {
 };
 
 const turnWon = (firstPlayer, secondPlayer, winner) => {
-  // log(firstPlayer, secondPlayer);
+  log(firstPlayer, secondPlayer);
   gameRestart(firstPlayer, secondPlayer, winner);
   renderGrid(document.querySelectorAll(".grid-cell-1"), firstPlayer);
   renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
@@ -95,28 +95,28 @@ const turnWon = (firstPlayer, secondPlayer, winner) => {
   setup();
 };
 
-// const log = (firstPlayer, secondPlayer) => {
-//   let x = 0;
-//   for (let i = 0; i < 2; i += 1) {
-//     if (x === 0) {
-//       const fleet = firstPlayer.board.fleetCoordinates();
-//       console.log("player 1");
-//       for (let i = 0; i < firstPlayer.board.fleetCoordinates().length; i += 1) {
-//         console.log(fleet[i]);
-//       }
-//       console.log(firstPlayer.board.getShipsRemaining());
-//       x += 1;
-//     } else if (x === 1) {
-//       const fleet = secondPlayer.board.fleetCoordinates();
-//       console.log("player 2");
-//       for (
-//         let i = 0;
-//         i < secondPlayer.board.fleetCoordinates().length;
-//         i += 1
-//       ) {
-//         console.log(fleet[i]);
-//       }
-//       console.log(secondPlayer.board.getShipsRemaining());
-//     }
-//   }
-// };
+const log = (firstPlayer, secondPlayer) => {
+  let x = 0;
+  for (let i = 0; i < 2; i += 1) {
+    if (x === 0) {
+      const fleet = firstPlayer.board.fleetCoordinates();
+      console.log("player 1");
+      for (let i = 0; i < firstPlayer.board.fleetCoordinates().length; i += 1) {
+        console.log(fleet[i]);
+      }
+      console.log(firstPlayer.board.getShipsRemaining());
+      x += 1;
+    } else if (x === 1) {
+      const fleet = secondPlayer.board.fleetCoordinates();
+      console.log("player 2");
+      for (
+        let i = 0;
+        i < secondPlayer.board.fleetCoordinates().length;
+        i += 1
+      ) {
+        console.log(fleet[i]);
+      }
+      console.log(secondPlayer.board.getShipsRemaining());
+    }
+  }
+};

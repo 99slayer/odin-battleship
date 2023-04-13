@@ -17,6 +17,13 @@ header {
   width: 100%;
   border: 1px solid black;
 }
+#reset-btn{
+  margin-right: auto;
+  margin-left: 10px;
+}
+#header-text{
+  margin-right: auto;
+}
 #main {
   display: grid;
   grid-template-columns: 1fr 452px 1fr;

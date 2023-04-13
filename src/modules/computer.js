@@ -1,4 +1,3 @@
-import { gameStart } from "./gameStart";
 import { renderGrid } from "../DOM/interaction/grid";
 
 export const computerPlacement = (player, sizeArr) => {
@@ -25,8 +24,6 @@ export const computerPlacement = (player, sizeArr) => {
     sizeArr.shift();
   }
   renderGrid(document.querySelectorAll(".grid-cell-2"), player);
-
-  gameStart();
 };
 
 const generateCoordinates = (player, size) => {

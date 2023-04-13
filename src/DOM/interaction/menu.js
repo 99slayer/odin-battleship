@@ -7,6 +7,15 @@ import {
 import { placementPhase, renderGrid, resetGridEvents } from "./grid";
 import { computerPlacement } from "../../modules/computer";
 
+const resetBtn = document.getElementById("reset-btn");
+resetBtn.onclick = () => {
+  if (!playerOne && !playerTwo) {
+    return;
+  }
+
+  window.location.reload();
+};
+
 const multiplayer = document.getElementById("multiplayer");
 const names = document.getElementById("names");
 const placement = document.getElementById("placement");
@@ -31,8 +40,8 @@ const show = (el) => {
 };
 
 const getNames = () => {
-  const playerOneName = playerOneNameEl.value;
-  let playerTwoName = playerTwoNameEl.value;
+  const playerOneName = playerOneNameEl.value.trim();
+  let playerTwoName = playerTwoNameEl.value.trim();
 
   if (!isMultiplayer) {
     playerTwoName = "computer";
@@ -56,6 +65,7 @@ const donePlacement = (firstPlayer, secondPlayer) => {
       computerPlacement(secondPlayer, [5, 4, 3, 3, 2]);
       hide(placement);
       renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
+      gameStart();
     } else {
       placementPhase(secondPlayer, 2);
     }
@@ -79,7 +89,6 @@ const gameSetUp = () => {
   }
 
   hide(names);
-
   setup(nameOne, nameTwo);
   playerOneNameEl.value = "";
   playerTwoNameEl.value = "";

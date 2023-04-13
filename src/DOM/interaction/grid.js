@@ -137,7 +137,7 @@ export const renderGrid = (cells, player, placing = false) => {
   });
 };
 
-const resetGrid = (cells) => {
+export const resetGrid = (cells) => {
   cells.forEach((cell) => {
     if (checkTier(cell)) {
       return;
