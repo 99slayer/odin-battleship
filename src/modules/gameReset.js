@@ -1,7 +1,7 @@
 import { changeTurn } from "./turn";
 import { resetGridEvents } from "../DOM/interaction/grid";
 
-export const gameReset = (firstPlayer, secondPlayer, winner) => {
+export const gameRestart = (firstPlayer, secondPlayer, winner) => {
   if (winner === "first" && firstPlayer.isTurn) {
     changeTurn(firstPlayer, secondPlayer);
   } else if (winner === "second" && secondPlayer.isTurn) {

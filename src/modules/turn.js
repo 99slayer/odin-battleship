@@ -2,7 +2,7 @@ import { highlight } from "../DOM/interaction/highlight";
 import { updateDisplays } from "../DOM/interaction/playerDisplays";
 import { renderGrid } from "../DOM/interaction/grid";
 import { checkWin } from "./checkWin";
-import { gameReset } from "./gameReset";
+import { gameRestart } from "./gameReset";
 import { setup } from "./gameStart";
 import { checkForComputer } from "./computer";
 
@@ -88,7 +88,7 @@ const turnRegular = (firstPlayer, secondPlayer) => {
 
 const turnWon = (firstPlayer, secondPlayer, winner) => {
   // log(firstPlayer, secondPlayer);
-  gameReset(firstPlayer, secondPlayer, winner);
+  gameRestart(firstPlayer, secondPlayer, winner);
   renderGrid(document.querySelectorAll(".grid-cell-1"), firstPlayer);
   renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
   updateDisplays(firstPlayer, secondPlayer);
