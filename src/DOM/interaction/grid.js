@@ -148,7 +148,7 @@ export const resetGrid = (cells) => {
 
 // Creates and adds event listeners for the placement phase.
 export const placementPhase = (player, playerNum) => {
-  const placement = document.getElementById("placement");
+  const placement = document.getElementById("placement-menu");
   const doneBtn = document.getElementById("done-btn");
   placement.style.display = "block";
   doneBtn.style.display = null;

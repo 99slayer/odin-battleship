@@ -13,9 +13,6 @@ export const createPlayer = (playerName, isComp = false) => {
 
     if (computer) {
       target = computerAttack(enemyBoard);
-      // console.log(`computer attacks ${target}`);
-    } else {
-      // console.log(`${name} attacks ${target}`);
     }
 
     enemyBoard.receiveAttack(target);

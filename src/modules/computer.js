@@ -5,7 +5,6 @@ export const computerPlacement = (player, sizeArr) => {
 
   for (let i = 0; i < numberOfShips; i += 1) {
     let coords = generateCoordinates(player, sizeArr[0]);
-
     const currentFleet = player.board.fleetCoordinates();
     let fleetArr;
 
@@ -14,15 +13,13 @@ export const computerPlacement = (player, sizeArr) => {
     }
 
     while (checkCoordinates(coords, fleetArr)) {
-      // let old = coords;
       coords = generateCoordinates(player, sizeArr[0]);
-      // console.log(`old coords: ${old}| new coords: ${coords}`);
     }
 
-    // console.log(`computer places ship at ${coords}`);
     player.board.place(coords);
     sizeArr.shift();
   }
+
   renderGrid(document.querySelectorAll(".grid-cell-2"), player);
 };
 
@@ -57,7 +54,6 @@ const checkCoordinates = (coordinates, fleet) => {
     if (fleet === undefined) {
       break;
     } else if (fleet.includes(coordinates[i])) {
-      console.log("ship conflict");
       return true;
     }
   }
@@ -110,6 +106,7 @@ export const computerAttack = (enemyBoard, gen = 1) => {
   const ships = enemyBoard.getShips();
   let target;
 
+  // checks if there are any targets adjacent to current hits
   const targetAdjacent = () => {
     // populates hits array
     for (let i = 0; i < enemyBoard.attacks.length; i += 1) {
@@ -193,11 +190,12 @@ export const computerAttack = (enemyBoard, gen = 1) => {
   };
 
   targetAdjacent();
+
   if (hits.length !== 0) {
-    // console.log(`adjacent target found => ${target}`);
     return target;
   }
 
+  // if there are no adjacent targets this generates a new target
   const generateAttack = () => {
     const generateCharCode = () => {
       return Math.floor(Math.random() * (74 - 65 + 1)) + 65;

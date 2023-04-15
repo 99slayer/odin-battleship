@@ -1,5 +1,4 @@
-// input cell element data attribute
-// output attack coordinates
+// input cell data attribute/output attack coordinates
 export const parseCellCoordinate = (attribute) => {
   if (typeof attribute !== "string") {
     return;

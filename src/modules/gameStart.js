@@ -29,7 +29,6 @@ export const setup = (nameOne, nameTwo) => {
   placementPhase(playerOne, 1);
 };
 
-// should be called after ships have been placed
 export const gameStart = () => {
   gridEvents();
 

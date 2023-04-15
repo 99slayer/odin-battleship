@@ -7,7 +7,6 @@ export const gameRestart = (firstPlayer, secondPlayer, winner) => {
   } else if (winner === "second" && secondPlayer.isTurn) {
     changeTurn(firstPlayer, secondPlayer);
   }
-  // console.log('GAME HAS BEEN RESET.');
 
   const grid1 = document.querySelector(".grid-1");
   const grid2 = document.querySelector(".grid-2");

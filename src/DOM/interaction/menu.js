@@ -6,7 +6,6 @@ import {
 } from "../../modules/gameStart";
 import { placementPhase, renderGrid, resetGridEvents } from "./grid";
 import { computerPlacement } from "../../modules/computer";
-// import { elements } from "../elements";
 
 const resetBtn = document.getElementById("reset-btn");
 resetBtn.onclick = () => {

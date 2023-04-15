@@ -11,10 +11,6 @@ export const createGameboard = () => {
   };
 
   const receiveAttack = (target) => {
-    if (attacks.includes(target)) {
-      return;
-    }
-
     const shipIndex = ships.findIndex((ship) => {
       return ship.coordinates.includes(target);
     });
