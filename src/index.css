@@ -68,11 +68,6 @@ header {
   display: flex;
   flex-direction: column;
 }
-#menu-rules {
-  width: 100%;
-  height: 200px;
-  border: 1px solid black;
-}
 .display {
   justify-self: flex-start;
   align-self: flex-start;

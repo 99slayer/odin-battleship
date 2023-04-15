@@ -3,8 +3,6 @@ export const createGrid = (grid, gridNum) => {
     const row = i;
     const gridRow = document.createElement("div");
     gridRow.classList.add("grid-row");
-    gridRow.setAttribute("id", `grid-row-${i}`);
-    gridRow.setAttribute("data-row-number", `${i}`);
 
     for (let i = 0; i < 11; i += 1) {
       const gridCell = document.createElement("div");
@@ -21,17 +19,19 @@ export const createGrid = (grid, gridNum) => {
   const labelRows = () => {
     const nodeList = [];
     const rows = grid.childNodes;
+    let i = 1;
 
     rows.forEach((e) => {
       nodeList.push(e.firstChild);
     });
 
-    let i = 1;
     nodeList.forEach((e) => {
       e.style.border = "none";
+
       if (e.getAttribute("data-cell-coordinate") === "0-0") {
         return;
       }
+
       e.textContent = `${i}`;
       i += 1;
     });
@@ -40,12 +40,15 @@ export const createGrid = (grid, gridNum) => {
   const labelColumns = () => {
     const nodeList = grid.firstChild.childNodes;
     let i = 0;
+
     nodeList.forEach((e) => {
       e.style.border = "none";
       const cellCoordinate = e.getAttribute("data-cell-coordinate");
+
       if (cellCoordinate === "0-0") {
         return;
       }
+
       e.textContent = `${String.fromCharCode(65 + i)}`;
       i += 1;
     });

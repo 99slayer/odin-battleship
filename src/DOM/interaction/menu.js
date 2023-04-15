@@ -6,6 +6,7 @@ import {
 } from "../../modules/gameStart";
 import { placementPhase, renderGrid, resetGridEvents } from "./grid";
 import { computerPlacement } from "../../modules/computer";
+// import { elements } from "../elements";
 
 const resetBtn = document.getElementById("reset-btn");
 resetBtn.onclick = () => {
@@ -16,17 +17,17 @@ resetBtn.onclick = () => {
   window.location.reload();
 };
 
-const multiplayer = document.getElementById("multiplayer");
-const names = document.getElementById("names");
-const placement = document.getElementById("placement");
+const multiplayer = document.getElementById("multiplayer-menu");
+const names = document.getElementById("name-menu");
+const placement = document.getElementById("placement-menu");
 
-const singlePlayerBtn = document.getElementById("single-player");
-const twoPlayerBtn = document.getElementById("two-player");
+const singlePlayerBtn = document.getElementById("single-player-btn");
+const twoPlayerBtn = document.getElementById("two-player-btn");
 const playerTwoCont = document.getElementById("player-two-cont");
 
 const playerOneNameEl = document.getElementById("player-one-name");
 const playerTwoNameEl = document.getElementById("player-two-name");
-const startBtn = document.getElementById("start");
+const startBtn = document.getElementById("start-btn");
 const doneBtn = document.getElementById("done-btn");
 
 let isMultiplayer = false;
@@ -97,7 +98,7 @@ const gameSetUp = () => {
 const multiplayerMenu = (e) => {
   hide(playerTwoCont);
 
-  if (e.target.getAttribute("id") === "two-player") {
+  if (e.target.getAttribute("id") === "two-player-btn") {
     playerTwoCont.style.display = "flex";
     isMultiplayer = true;
   }
