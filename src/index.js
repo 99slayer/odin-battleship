@@ -1,6 +1,11 @@
 import { createGrid } from "./DOM/components/createGrid";
 import { menuEvents } from "./DOM/interaction/menu";
 
+const displays = document.querySelectorAll(".display");
+displays.forEach((x) => {
+  x.style.display = "none";
+});
+
 const multiplayer = document.getElementById("multiplayer-menu");
 multiplayer.style.display = "block";
 

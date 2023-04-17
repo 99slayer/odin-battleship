@@ -4,26 +4,38 @@
   box-sizing: border-box;
   font-family: "Rajdhani", sans-serif;
 }
-/* o.o */
 body {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 header {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 452px 1fr;
   align-items: center;
   height: 40px;
   width: 100%;
   border: 1px solid black;
 }
+input[type="text"]{
+  outline: none;
+  font-size: 1em;
+}
+.btn{
+  padding-left: 4px;
+  padding-right: 4px;
+  font-size: 1em;
+  font-weight: 600;
+}
 #reset-btn{
-  margin-right: auto;
   margin-left: 10px;
+  grid-column: 1/2;
+  justify-self: flex-start;
 }
 #header-text{
-  margin-right: auto;
+  margin-left: 40px;
+  grid-column: 2/3;
+  justify-self: center;
 }
 #main {
   display: grid;
@@ -35,17 +47,17 @@ header {
 #menu-cont {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: stretch;
+  align-items: flex-end;
   grid-column: 1/2;
-  grid-row: 1/3;
-  max-width: 500px;
-  margin: 56px 20px 20px 20px;
+  grid-row: 1/2;
+  margin: 56px 0px 20px 20px;
 }
 .menu {
   display: none;
-  width: 100%;
-  height: 200px;
+  max-width: 60%;
+  min-width: 40%;
+  height: 100%;
   border: 1px solid black;
 }
 .menu-cont {
@@ -68,6 +80,9 @@ header {
 #player-two-cont {
   display: flex;
   flex-direction: column;
+}
+.placement-player-name{
+  font-size: 1.4em;
 }
 .display {
   justify-self: flex-start;
@@ -96,7 +111,12 @@ header {
   margin-top: 36px;
 }
 .display-cont {
+  max-width: 100%;
   flex: 1;
+}
+.display-cont h3{
+  word-wrap: break-word;
+  white-space: normal;
 }
 #grid-space {
   grid-column: 2/3;
@@ -109,22 +129,12 @@ header {
   height: 100%;
   user-select: none;
 }
-#player-one-grid {
+.grid{
   justify-self: center;
   align-self: center;
   display: grid;
   grid-template-rows: repeat(11, 1fr);
   gap: 1px;
-  width: 400px;
-  height: 400px;
-}
-#player-two-grid {
-  justify-self: center;
-  align-self: center;
-  display: grid;
-  grid-template-rows: repeat(11, 1fr);
-  gap: 1px;
-  margin-bottom: 14px;
   width: 400px;
   height: 400px;
 }
@@ -149,6 +159,7 @@ header {
   background-color: rgb(70, 70, 70);
 }
 footer {
+  margin-top: 14px;
   height: 40px;
   width: 100%;
   border: 1px solid black;

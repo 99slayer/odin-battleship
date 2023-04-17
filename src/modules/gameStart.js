@@ -5,6 +5,7 @@ import {
   renderGrid,
   placementPhase,
 } from "../DOM/interaction/grid";
+import { createPlacementText } from "../DOM/interaction/menu";
 import { firstTurn, compTurn } from "./turn";
 import { highlight } from "../DOM/interaction/highlight";
 import { updateDisplays } from "../DOM/interaction/playerDisplays";
@@ -26,6 +27,7 @@ export const setup = (nameOne, nameTwo) => {
   }
 
   highlight(playerOne, playerTwo);
+  createPlacementText(playerOne);
   placementPhase(playerOne, 1);
 };
 

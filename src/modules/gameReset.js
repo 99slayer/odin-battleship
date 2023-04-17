@@ -8,9 +8,8 @@ export const gameRestart = (firstPlayer, secondPlayer, winner) => {
     changeTurn(firstPlayer, secondPlayer);
   }
 
-  const grid1 = document.querySelector(".grid-1");
-  const grid2 = document.querySelector(".grid-2");
-
+  const grid1 = document.getElementById("player-one-grid");
+  const grid2 = document.getElementById("player-two-grid");
   firstPlayer.board.reset();
   secondPlayer.board.reset();
   resetGridEvents(grid1);

@@ -8,6 +8,7 @@ import { placementPhase, renderGrid, resetGridEvents } from "./grid";
 import { computerPlacement } from "../../modules/computer";
 
 const resetBtn = document.getElementById("reset-btn");
+
 resetBtn.onclick = () => {
   if (!playerOne && !playerTwo) {
     return;
@@ -28,6 +29,8 @@ const playerOneNameEl = document.getElementById("player-one-name");
 const playerTwoNameEl = document.getElementById("player-two-name");
 const startBtn = document.getElementById("start-btn");
 const doneBtn = document.getElementById("done-btn");
+
+const displays = document.querySelectorAll(".display");
 
 let isMultiplayer = false;
 
@@ -50,7 +53,24 @@ const getNames = () => {
   return [playerOneName, playerTwoName];
 };
 
+export const createPlacementText = (player) => {
+  const placementText = document.getElementById("placement-text");
+  const playerName = document.createElement("h3");
+  playerName.classList.add("placement-player-name");
+  playerName.textContent = player.getName();
+  const text = document.createElement("p");
+  text.textContent =
+    "Place your ships by clicking on your gameboard. Right click to change the ships axis.";
+  placementText.append(playerName, text);
+};
+
+const removePlacementText = () => {
+  const placementText = document.getElementById("placement-text");
+  placementText.innerHTML = "";
+};
+
 const donePlacement = (firstPlayer, secondPlayer) => {
+  removePlacementText();
   renderGrid(document.querySelectorAll(".grid-cell-1"), firstPlayer);
   renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
 
@@ -58,7 +78,7 @@ const donePlacement = (firstPlayer, secondPlayer) => {
   const secondFleet = secondPlayer.board.fleetCoordinates();
 
   if (firstFleet.length === 5 && secondFleet.length === 0) {
-    const grid1 = document.querySelector(".grid-1");
+    const grid1 = document.getElementById("player-one-grid");
     resetGridEvents(grid1);
 
     if (secondPlayer.computer) {
@@ -67,12 +87,13 @@ const donePlacement = (firstPlayer, secondPlayer) => {
       renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
       gameStart();
     } else {
+      createPlacementText(secondPlayer);
       placementPhase(secondPlayer, 2);
     }
   }
 
   if (firstFleet.length === 5 && secondFleet.length === 5) {
-    const grid2 = document.querySelector(".grid-2");
+    const grid2 = document.getElementById("player-two-grid");
     resetGridEvents(grid2);
     hide(placement);
     gameStart();
@@ -88,7 +109,12 @@ const gameSetUp = () => {
     return;
   }
 
+  displays.forEach((display) => {
+    display.style.display = null;
+  });
+
   hide(names);
+
   setup(nameOne, nameTwo);
   playerOneNameEl.value = "";
   playerTwoNameEl.value = "";
