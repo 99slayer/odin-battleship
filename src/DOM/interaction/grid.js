@@ -142,12 +142,14 @@ export const resetGrid = (cells) => {
     if (checkTier(cell)) {
       return;
     }
+
     cell.textContent = null;
   });
 };
 
 // Creates and adds event listeners for the placement phase.
 export const placementPhase = (player, playerNum) => {
+  const gridSpace = document.getElementById("grid-space");
   const placement = document.getElementById("placement-menu");
   const doneBtn = document.getElementById("done-btn");
   placement.style.display = "block";
@@ -192,8 +194,8 @@ export const placementPhase = (player, playerNum) => {
         });
       };
 
-      // change axis
-      document.oncontextmenu = (e) => {
+      // change axis on right click
+      gridSpace.oncontextmenu = (e) => {
         e.preventDefault();
 
         hoverCells.forEach((hoverCell) => {
