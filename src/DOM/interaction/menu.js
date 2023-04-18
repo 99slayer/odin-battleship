@@ -1,9 +1,9 @@
 import {
-  setup,
+  gameSetup,
   gameStart,
   playerOne,
   playerTwo,
-} from "../../modules/gameStart";
+} from "../../modules/gameFunctions";
 import { placementPhase, renderGrid, resetGridEvents } from "./grid";
 import { computerPlacement } from "../../modules/computer";
 
@@ -100,7 +100,7 @@ const donePlacement = (firstPlayer, secondPlayer) => {
   }
 };
 
-const gameSetUp = () => {
+const startSetup = () => {
   const playerNames = getNames();
   const nameOne = playerNames[0];
   const nameTwo = playerNames[1];
@@ -115,7 +115,7 @@ const gameSetUp = () => {
 
   hide(names);
 
-  setup(nameOne, nameTwo);
+  gameSetup(nameOne, nameTwo);
   playerOneNameEl.value = "";
   playerTwoNameEl.value = "";
 };
@@ -138,24 +138,24 @@ export const menuEvents = (() => {
   twoPlayerBtn.addEventListener("click", multiplayerMenu);
 
   startBtn.addEventListener("click", () => {
-    gameSetUp();
+    startSetup();
   });
 
   startBtn.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-      gameSetUp();
+      startSetup();
     }
   });
 
   playerOneNameEl.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-      gameSetUp();
+      startSetup();
     }
   });
 
   playerTwoNameEl.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-      gameSetUp();
+      startSetup();
     }
   });
 

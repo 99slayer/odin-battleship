@@ -2,8 +2,7 @@ import { highlight } from "../DOM/interaction/highlight";
 import { updateDisplays } from "../DOM/interaction/playerDisplays";
 import { renderGrid } from "../DOM/interaction/grid";
 import { checkWin } from "./checkWin";
-import { gameRestart } from "./gameReset";
-import { setup } from "./gameStart";
+import { gameSetup, gameRestart } from "./gameFunctions";
 import { checkForComputer } from "./computer";
 
 // randomly chooses a player to go first
@@ -90,7 +89,7 @@ const turnWon = (firstPlayer, secondPlayer, winner) => {
   renderGrid(document.querySelectorAll(".grid-cell-1"), firstPlayer);
   renderGrid(document.querySelectorAll(".grid-cell-2"), secondPlayer);
   updateDisplays(firstPlayer, secondPlayer);
-  setup();
+  gameSetup();
 };
 
 const log = (firstPlayer, secondPlayer) => {

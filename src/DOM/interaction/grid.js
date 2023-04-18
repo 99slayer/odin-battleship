@@ -1,5 +1,5 @@
 import { parseCellCoordinate } from "../../modules/parseCellCoordinate";
-import { playerOne, playerTwo } from "../../modules/gameStart";
+import { playerOne, playerTwo } from "../../modules/gameFunctions";
 import { turn } from "../../modules/turn";
 import { checkForComputer } from "../../modules/computer";
 

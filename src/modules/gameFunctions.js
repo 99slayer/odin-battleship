@@ -4,15 +4,16 @@ import {
   gridEvents,
   renderGrid,
   placementPhase,
+  resetGridEvents,
 } from "../DOM/interaction/grid";
 import { createPlacementText } from "../DOM/interaction/menu";
-import { firstTurn, compTurn } from "./turn";
+import { changeTurn, firstTurn, compTurn } from "./turn";
 import { highlight } from "../DOM/interaction/highlight";
 import { updateDisplays } from "../DOM/interaction/playerDisplays";
 
 export let playerOne, playerTwo;
 
-export const setup = (nameOne, nameTwo) => {
+export const gameSetup = (nameOne, nameTwo) => {
   if (!playerOne || !playerTwo) {
     let x = false;
 
@@ -47,4 +48,19 @@ export const gameStart = () => {
   if (playerTwo.computer && playerTwo.isTurn) {
     compTurn(playerOne, playerTwo);
   }
+};
+
+export const gameRestart = (firstPlayer, secondPlayer, winner) => {
+  if (winner === "first" && firstPlayer.isTurn) {
+    changeTurn(firstPlayer, secondPlayer);
+  } else if (winner === "second" && secondPlayer.isTurn) {
+    changeTurn(firstPlayer, secondPlayer);
+  }
+
+  const grid1 = document.getElementById("player-one-grid");
+  const grid2 = document.getElementById("player-two-grid");
+  firstPlayer.board.reset();
+  secondPlayer.board.reset();
+  resetGridEvents(grid1);
+  resetGridEvents(grid2);
 };
