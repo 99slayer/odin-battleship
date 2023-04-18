@@ -59,9 +59,12 @@ export const createPlacementText = (player) => {
   playerName.classList.add("placement-player-name");
   playerName.textContent = player.getName();
   const text = document.createElement("p");
+  const warning = document.createElement("p");
   text.textContent =
     "Place your ships by clicking on your gameboard. Right click to change the ships axis.";
-  placementText.append(playerName, text);
+  warning.textContent =
+    "If you're playing with another person make sure they aren't looking!";
+  placementText.append(playerName, text, warning);
 };
 
 const removePlacementText = () => {

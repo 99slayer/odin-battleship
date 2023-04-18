@@ -6,6 +6,9 @@ displays.forEach((x) => {
   x.style.display = "none";
 });
 
+const winScreen = document.getElementById("win-screen");
+winScreen.style.display = "none";
+
 const multiplayer = document.getElementById("multiplayer-menu");
 multiplayer.style.display = "block";
 
