@@ -147,7 +147,7 @@ export const resetGrid = (cells) => {
   });
 };
 
-// Creates and adds event listeners for the placement phase.
+// Creates event listeners for the placement phase.
 export const placementPhase = (player, playerNum) => {
   const gridSpace = document.getElementById("grid-space");
   const placement = document.getElementById("placement-menu");

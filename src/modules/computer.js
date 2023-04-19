@@ -195,7 +195,7 @@ export const computerAttack = (enemyBoard, gen = 1) => {
     return target;
   }
 
-  // if there are no adjacent targets this generates a new target
+  // if there are no valid adjacent targets, a new target is generated
   const generateAttack = () => {
     const generateCharCode = () => {
       return Math.floor(Math.random() * (74 - 65 + 1)) + 65;
@@ -205,7 +205,7 @@ export const computerAttack = (enemyBoard, gen = 1) => {
     let number = Math.floor(Math.random() * 10 + 1);
     target = letter + number;
 
-    // remakes attack if target has already been hit
+    // remakes target coordinates if target has already been hit
     if (enemyBoard.attacks.includes(target)) {
       do {
         letter = String.fromCharCode(generateCharCode());

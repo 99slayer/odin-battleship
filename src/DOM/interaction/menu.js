@@ -56,10 +56,11 @@ const getNames = () => {
 export const createPlacementText = (player) => {
   const placementText = document.getElementById("placement-text");
   const playerName = document.createElement("h3");
-  playerName.classList.add("placement-player-name");
-  playerName.textContent = player.getName();
   const text = document.createElement("p");
   const warning = document.createElement("p");
+
+  playerName.classList.add("placement-player-name");
+  playerName.textContent = player.getName();
   text.textContent =
     "Place your ships by clicking on your gameboard. Right click to change the ships axis.";
   warning.textContent =
