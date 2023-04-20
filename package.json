@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wunderbar-x/odin-battleship.git"
+    "url": "git+https://github.com/99slayer/odin-battleship.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wunderbar-x/odin-battleship/issues"
+    "url": "https://github.com/99slayer/odin-battleship/issues"
   },
-  "homepage": "https://github.com/wunderbar-x/odin-battleship#readme",
+  "homepage": "https://github.com/99slayer/odin-battleship#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
     "eslint": "^8.38.0",
@@ -24,6 +24,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1",
+    "gh-pages": "^5.0.0",
     "jest": "^29.4.3",
     "prettier": "2.8.7",
     "webpack": "^5.75.0",
