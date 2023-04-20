@@ -1,5 +1,6 @@
 import { createGrid } from "./DOM/components/createGrid";
 import { menuEvents } from "./DOM/interaction/menu";
+import "./index.css";
 
 const displays = document.querySelectorAll(".display");
 displays.forEach((x) => {
